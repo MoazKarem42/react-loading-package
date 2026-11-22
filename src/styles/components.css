@@ -111,3 +111,72 @@
 .rl-dots-dot:nth-child(3) {
   animation-delay: 0s;
 }
+
+/* Bars Loader */
+.rl-bars {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-bars-gap, var(--rl-bars-gap-md, 4px));
+  vertical-align: middle;
+  box-sizing: border-box;
+  height: var(--rl-bars-height, var(--rl-bars-height-md, 24px));
+}
+
+/* Bars sizing presets */
+.rl-bars--sm {
+  --rl-bars-width: var(--rl-bars-width-sm, 3px);
+  --rl-bars-height: var(--rl-bars-height-sm, 16px);
+  --rl-bars-gap: var(--rl-bars-gap-sm, 3px);
+}
+
+.rl-bars--md {
+  --rl-bars-width: var(--rl-bars-width-md, 4px);
+  --rl-bars-height: var(--rl-bars-height-md, 24px);
+  --rl-bars-gap: var(--rl-bars-gap-md, 4px);
+}
+
+.rl-bars--lg {
+  --rl-bars-width: var(--rl-bars-width-lg, 6px);
+  --rl-bars-height: var(--rl-bars-height-lg, 36px);
+  --rl-bars-gap: var(--rl-bars-gap-lg, 6px);
+}
+
+.rl-bars--xl {
+  --rl-bars-width: var(--rl-bars-width-xl, 8px);
+  --rl-bars-height: var(--rl-bars-height-xl, 48px);
+  --rl-bars-gap: var(--rl-bars-gap-xl, 8px);
+}
+
+.rl-bars-bar {
+  display: inline-block;
+  width: var(--rl-bars-width, var(--rl-bars-width-md, 4px));
+  height: var(--rl-bars-height, var(--rl-bars-height-md, 24px));
+  border-radius: calc(var(--rl-bars-width, var(--rl-bars-width-md, 4px)) / 2);
+  background-color: var(--rl-bars-color, var(--rl-primary));
+  animation: rl-wave var(--rl-speed, 1s) ease-in-out infinite both;
+  transform-origin: center;
+}
+
+.rl-bars-bar:nth-child(1) {
+  animation-delay: -0.4s;
+  animation-delay: calc(var(--rl-speed, 1s) * -0.4);
+}
+
+.rl-bars-bar:nth-child(2) {
+  animation-delay: -0.3s;
+  animation-delay: calc(var(--rl-speed, 1s) * -0.3);
+}
+
+.rl-bars-bar:nth-child(3) {
+  animation-delay: -0.2s;
+  animation-delay: calc(var(--rl-speed, 1s) * -0.2);
+}
+
+.rl-bars-bar:nth-child(4) {
+  animation-delay: -0.1s;
+  animation-delay: calc(var(--rl-speed, 1s) * -0.1);
+}
+
+.rl-bars-bar:nth-child(5) {
+  animation-delay: 0s;
+}

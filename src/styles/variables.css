@@ -24,6 +24,21 @@
   --rl-dots-gap-lg: 8px;
   --rl-dots-gap-xl: 10px;
 
+  /* Bars tokens */
+  --rl-bars-color: var(--rl-primary);
+  --rl-bars-width-sm: 3px;
+  --rl-bars-height-sm: 16px;
+  --rl-bars-gap-sm: 3px;
+  --rl-bars-width-md: 4px;
+  --rl-bars-height-md: 24px;
+  --rl-bars-gap-md: 4px;
+  --rl-bars-width-lg: 6px;
+  --rl-bars-height-lg: 36px;
+  --rl-bars-gap-lg: 6px;
+  --rl-bars-width-xl: 8px;
+  --rl-bars-height-xl: 48px;
+  --rl-bars-gap-xl: 8px;
+
   /* Skeleton & Overlay tokens reserved for Phase 2 */
   --rl-skeleton-base: #e2e8f0;
   --rl-skeleton-highlight: #f8fafc;
