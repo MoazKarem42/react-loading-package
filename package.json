@@ -1,0 +1,53 @@
+{
+  "name": "react-loading-kit",
+  "version": "0.1.0",
+  "description": "Zero-dependency, accessible loading states, spinners, and skeleton loaders for React",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "tsup",
+    "type-check": "tsc --noEmit",
+    "dev": "tsup --watch"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  },
+  "keywords": [
+    "react",
+    "loading",
+    "spinner",
+    "skeleton",
+    "loaders",
+    "indicators",
+    "accessibility",
+    "zero-dependency"
+  ],
+  "license": "MIT"
+}

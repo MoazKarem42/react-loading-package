@@ -1,0 +1,113 @@
+/* Screen reader visually hidden utility */
+.rl-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Base Spinner */
+.rl-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  animation: rl-spin var(--rl-speed) linear infinite;
+}
+
+/* Sizing presets */
+.rl-spinner--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-spinner--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-spinner--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-spinner--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-spinner-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-spinner-track {
+  stroke: var(--rl-spinner-track);
+}
+
+.rl-spinner-head {
+  stroke: var(--rl-spinner-head);
+  stroke-linecap: round;
+}
+
+/* Dots Loader */
+.rl-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-dots-gap, var(--rl-dots-gap-md, 6px));
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding-top: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.35);
+  padding-bottom: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.1);
+}
+
+/* Dots sizing presets */
+.rl-dots--sm {
+  --rl-dots-size: var(--rl-dots-size-sm, 6px);
+  --rl-dots-gap: var(--rl-dots-gap-sm, 4px);
+}
+
+.rl-dots--md {
+  --rl-dots-size: var(--rl-dots-size-md, 8px);
+  --rl-dots-gap: var(--rl-dots-gap-md, 6px);
+}
+
+.rl-dots--lg {
+  --rl-dots-size: var(--rl-dots-size-lg, 12px);
+  --rl-dots-gap: var(--rl-dots-gap-lg, 8px);
+}
+
+.rl-dots--xl {
+  --rl-dots-size: var(--rl-dots-size-xl, 16px);
+  --rl-dots-gap: var(--rl-dots-gap-xl, 10px);
+}
+
+.rl-dots-dot {
+  display: inline-block;
+  width: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  height: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  border-radius: 50%;
+  background-color: var(--rl-dots-color, var(--rl-primary));
+  animation: rl-bounce var(--rl-speed, 1.4s) infinite ease-in-out both;
+}
+
+.rl-dots-dot:nth-child(1) {
+  animation-delay: -0.32s;
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.32);
+}
+
+.rl-dots-dot:nth-child(2) {
+  animation-delay: -0.16s;
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.16);
+}
+
+.rl-dots-dot:nth-child(3) {
+  animation-delay: 0s;
+}

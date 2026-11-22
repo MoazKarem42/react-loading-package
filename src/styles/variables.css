@@ -1,0 +1,31 @@
+:root {
+  /* Brand / Accent colors */
+  --rl-primary: #3b82f6;
+  --rl-spinner-track: rgba(0, 0, 0, 0.1);
+  --rl-spinner-head: var(--rl-primary);
+  --rl-dots-color: var(--rl-primary);
+
+  /* Animation timing */
+  --rl-speed: 0.75s;
+
+  /* Sizing tokens */
+  --rl-size-sm: 16px;
+  --rl-size-md: 24px;
+  --rl-size-lg: 36px;
+  --rl-size-xl: 48px;
+
+  /* Dots tokens */
+  --rl-dots-size-sm: 6px;
+  --rl-dots-size-md: 8px;
+  --rl-dots-size-lg: 12px;
+  --rl-dots-size-xl: 16px;
+  --rl-dots-gap-sm: 4px;
+  --rl-dots-gap-md: 6px;
+  --rl-dots-gap-lg: 8px;
+  --rl-dots-gap-xl: 10px;
+
+  /* Skeleton & Overlay tokens reserved for Phase 2 */
+  --rl-skeleton-base: #e2e8f0;
+  --rl-skeleton-highlight: #f8fafc;
+  --rl-overlay-bg: rgba(255, 255, 255, 0.75);
+}
