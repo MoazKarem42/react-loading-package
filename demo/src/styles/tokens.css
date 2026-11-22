@@ -1,0 +1,23 @@
+:root {
+  /* Color Tokens */
+  --rl-demo-bg: #09090b;
+  --rl-demo-surface: #121215;
+  --rl-demo-surface-elevated: #18181b;
+  --rl-demo-border: #27272a;
+  --rl-demo-border-hover: #3f3f46;
+  --rl-demo-text: #f4f4f5;
+  --rl-demo-text-muted: #a1a1aa;
+  --rl-demo-primary: #3b82f6;
+  --rl-demo-primary-hover: #2563eb;
+  --rl-demo-accent: #6366f1;
+
+  /* Typography */
+  --rl-demo-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --rl-demo-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Sizing & Spacing */
+  --rl-demo-container-max: 1200px;
+  --rl-demo-radius-sm: 6px;
+  --rl-demo-radius-md: 8px;
+  --rl-demo-radius-lg: 12px;
+}
