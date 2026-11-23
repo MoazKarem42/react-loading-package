@@ -3,7 +3,7 @@ import type { LoaderRegistryItem } from '@/registry/types';
 
 export interface PlaygroundPreviewProps {
   item: LoaderRegistryItem;
-  props: Record<string, any>;
+  props: Record<string, unknown>;
 }
 
 export const PlaygroundPreview: React.FC<PlaygroundPreviewProps> = ({ item, props }) => {

@@ -98,7 +98,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          {/* Static background track */}
+          {/*Static background track */}
           <circle
             className="rl-spinner-track"
             cx="16"
@@ -106,7 +106,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
             r={16 - thickness}
             strokeWidth={thickness}
           />
-          {/* Animated spinning arc */}
+          {/*Animated spinning arc */}
           <circle
             className="rl-spinner-head"
             cx="16"

@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsup",
     "type-check": "tsc --noEmit",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "lint": "eslint src demo/src"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -32,12 +33,17 @@
     }
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.73.0"
   },
   "keywords": [
     "react",

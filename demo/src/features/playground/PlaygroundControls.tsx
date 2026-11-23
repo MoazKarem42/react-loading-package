@@ -3,8 +3,8 @@ import type { LoaderControlConfig } from '@/registry/types';
 
 export interface PlaygroundControlsProps {
   controls: LoaderControlConfig[];
-  values: Record<string, any>;
-  onChange: (name: string, value: any) => void;
+  values: Record<string, unknown>;
+  onChange: (name: string, value: unknown) => void;
   onReset: () => void;
 }
 
@@ -77,7 +77,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
               <div key={control.name}>
                 <label style={labelStyle}>{control.label}</label>
                 <select
-                  value={val}
+                  value={String(val ?? '')}
                   onChange={(e) => onChange(control.name, e.target.value)}
                   style={inputStyle}
                 >
@@ -98,7 +98,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
                 <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                   <input
                     type="color"
-                    value={val}
+                    value={typeof val === 'string' ? val : '#000000'}
                     onChange={(e) => onChange(control.name, e.target.value)}
                     style={{
                       width: '36px',
@@ -112,7 +112,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
                   />
                   <input
                     type="text"
-                    value={val}
+                    value={String(val ?? '')}
                     onChange={(e) => onChange(control.name, e.target.value)}
                     style={{ ...inputStyle, flex: 1 }}
                   />
@@ -122,12 +122,13 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
           }
 
           if (control.type === 'number') {
+            const numVal = typeof val === 'number' ? val : Number(val) || 0;
             return (
               <div key={control.name}>
                 <div style={labelStyle}>
                   <span>{control.label}</span>
                   <span style={{ color: 'var(--rl-demo-text)' }}>
-                    {val}
+                    {numVal}
                     {control.unit || ''}
                   </span>
                 </div>
@@ -136,7 +137,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
                   min={control.min ?? 0}
                   max={control.max ?? 100}
                   step={control.step ?? 1}
-                  value={val}
+                  value={numVal}
                   onChange={(e) => onChange(control.name, parseFloat(e.target.value))}
                   style={{ width: '100%', cursor: 'pointer' }}
                 />
@@ -150,7 +151,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
                 <label style={labelStyle}>{control.label}</label>
                 <input
                   type="text"
-                  value={val}
+                  value={String(val ?? '')}
                   onChange={(e) => onChange(control.name, e.target.value)}
                   style={inputStyle}
                 />

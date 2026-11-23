@@ -15,6 +15,7 @@ The library consists of four core pillars:
   - React 18+ (compatible with React 19) & TypeScript (`strict: true`).
   - **Bundler**: `tsup` outputting ESM (`.js`), CJS (`.cjs`), TypeScript declarations (`.d.ts`), and a single bundled CSS file (`dist/styles.css`).
   - **Styling**: Pure CSS with CSS Custom Properties (`--rl-*`) and scoped class prefixes (`.rl-*`). ZERO runtime CSS-in-JS (no styled-components, emotion) and ZERO Tailwind dependency inside `src/`.
+  - **Linting**: ESLint flat config (`eslint.config.js`) enforcing strict code style constraints, React hook rules, and type-only imports across both `src/` and `demo/src/`.
 - **Demo App (`demo/`)**:
   - Vite + React + TypeScript.
   - Imports library source directly from `../src` (via Vite alias) for instant HMR during development.
@@ -57,10 +58,17 @@ Maintain this exact separation between the publishable library and the demo site
   - Always set `Component.displayName = "ComponentName"` on `forwardRef` components.
   - Extend native HTML attributes (e.g., `React.HTMLAttributes<HTMLDivElement>`) so `className`, `style`, `id`, and `data-*` work seamlessly.
   - Always merge consumer `className` with internal classes using a tiny internal helper (never overwrite user classes).
-- **TypeScript Rules**:
+- **TypeScript & Code Style Rules**:
   - `strict: true` everywhere. NEVER use `any` (use `unknown` or proper generics).
   - Export every public component's props interface from `src/index.ts` (e.g., `export interface SpinnerProps`).
   - Prefer union types for variants (`size?: "sm" | "md" | "lg" | number`) over enums.
+  - **Type-Only Imports (`@typescript-eslint/consistent-type-imports`)**: Always use `import type` when importing types or interfaces (e.g., `import type { FC, ReactNode } from "react";`).
+  - **No Nested Ternaries (`no-nested-ternary`)**: Do not use nested ternary operators. Refactor into `if`/`else` statements, helper functions, or lookup objects for clarity.
+  - **Comment Style (`spaced-comment`)**: Enforce `//comment` style with **no leading space** immediately after the slashes (e.g., `//test comment` or `//use client`). Triple-slash reference comments (e.g., `/// <reference ... />`) are permitted.
+  - **Strict Equality (`eqeqeq`)**: Always use strict equality (`===` and `!==`) instead of loose equality (`==` and `!=`).
+  - **Variable Declarations (`prefer-const`, `no-var`)**: Never use `var`. Use `const` by default and `let` only when the variable is reassigned.
+  - **Console Usage (`no-console`)**: `console.log` is prohibited. Only `console.warn` and `console.error` are allowed.
+  - **React Hooks (`react-hooks/rules-of-hooks`, `react-hooks/exhaustive-deps`)**: Follow standard React Hooks rules. Only call hooks at the top level of React function components or custom hooks, and ensure dependency arrays are exhaustive.
 - **State Manager Rules**:
   - Support both global loading (`start()`, `stop()`, `isLoading`) and keyed/scoped loading (`start("fetchUsers")`, `isLoading("fetchUsers")`).
   - Use an internal counter per key so overlapping concurrent requests do not prematurely hide the loader.
@@ -111,6 +119,7 @@ Maintain this exact separation between the publishable library and the demo site
 - **Inline Comments (MINIMAL)**:
   - DO NOT write obvious comments that narrate what the code does (e.g., `// increment counter`).
   - ONLY write inline comments to explain **why** a non-obvious decision, edge case, or browser workaround exists.
+  - Enforce `//comment` style with **no leading space** after slashes (ESLint `spaced-comment`).
 
 ---
 
@@ -140,7 +149,8 @@ Maintain this exact separation between the publishable library and the demo site
 
 ## 10. Verification & Definition of Done
 After implementing any feature or fix, you MUST run and verify:
-1. `npx tsc --noEmit` — zero TypeScript errors.
-2. `npm run build` — verify `dist/` contains `.js` (ESM), `.cjs` (CJS), `.d.ts` (Types), and `styles.css` with no warnings or missing exports.
-3. If `demo/` was modified, verify it compiles cleanly without broken imports.
-4. Summarize exact files created/modified and any new public exports added.
+1. `npm run lint` — zero ESLint errors across `src/` and `demo/src/`.
+2. `npx tsc --noEmit` — zero TypeScript errors.
+3. `npm run build` — verify `dist/` contains `.js` (ESM), `.cjs` (CJS), `.d.ts` (Types), and `styles.css` with no warnings or missing exports.
+4. If `demo/` was modified, verify it compiles cleanly without broken imports (`npm --prefix demo run build`).
+5. Summarize exact files created/modified and any new public exports added.

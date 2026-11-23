@@ -16,14 +16,14 @@ export const PlaygroundSection: React.FC<PlaygroundSectionProps> = ({
   onSelectId,
 }) => {
   const currentItem = loaderRegistry[activeId] || loaderRegistry.spinner;
-  const [propsState, setPropsState] = React.useState<Record<string, any>>(currentItem.defaultProps);
+  const [propsState, setPropsState] = React.useState<Record<string, unknown>>(currentItem.defaultProps);
 
-  // Sync default props when activeId changes
+  //Sync default props when activeId changes
   React.useEffect(() => {
     setPropsState(currentItem.defaultProps);
-  }, [activeId]);
+  }, [currentItem]);
 
-  const handlePropChange = (name: string, value: any) => {
+  const handlePropChange = (name: string, value: unknown) => {
     setPropsState((prev) => ({
       ...prev,
       [name]: value,

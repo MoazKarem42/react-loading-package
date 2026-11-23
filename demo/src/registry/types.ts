@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import type { ElementType } from 'react';
 
 export type LoaderId = 'spinner' | 'dots' | 'bars';
 
@@ -8,7 +8,7 @@ export interface LoaderControlConfig {
   name: string;
   label: string;
   type: LoaderControlFieldType;
-  defaultValue: any;
+  defaultValue: unknown;
   options?: (string | number)[];
   min?: number;
   max?: number;
@@ -20,8 +20,8 @@ export interface LoaderRegistryItem {
   id: LoaderId;
   name: string;
   description: string;
-  component: ComponentType<any>;
-  defaultProps: Record<string, any>;
+  component: ElementType;
+  defaultProps: Record<string, unknown>;
   controls: LoaderControlConfig[];
-  generateSnippet: (props: Record<string, any>) => string;
+  generateSnippet: (props: Record<string, unknown>) => string;
 }
