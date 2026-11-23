@@ -14,10 +14,16 @@ export interface BaseLoaderProps {
   size?: LoaderSize;
 
   /**
-   * Color of the animated spinner element.
-   * Defaults to CSS variable `--rl-spinner-head` (or `--rl-primary`).
+   * Color of the animated loader element.
+   * Defaults to CSS variable `--rl-primary`.
    */
   color?: string;
+
+  /**
+   * Animation cycle speed in seconds.
+   * Overrides the component's default animation duration.
+   */
+  speed?: number;
 
   /**
    * Accessible announcement for screen readers.

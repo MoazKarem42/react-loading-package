@@ -16,12 +16,6 @@ export interface SpinnerProps extends BaseLoaderProps, React.HTMLAttributes<HTML
    * Defaults to CSS variable `--rl-spinner-track`.
    */
   trackColor?: string;
-
-  /**
-   * Animation cycle speed in seconds.
-   * @default 0.75
-   */
-  speed?: number;
 }
 
 /**
@@ -47,13 +41,13 @@ function resolveSpinnerSize(size: LoaderSize): { className?: string; inlineStyle
  *
  * @example
  * ```tsx
- * // Default medium spinner
+ * //Default medium spinner
  * <Spinner />
  *
- * // Customized size, color, and thickness
+ * //Customized size, color, and thickness
  * <Spinner size="lg" color="#2563eb" thickness={4} label="Fetching records..." />
  *
- * // Explicit pixel sizing
+ * //Explicit pixel sizing
  * <Spinner size={40} />
  * ```
  */

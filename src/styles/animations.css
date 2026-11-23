@@ -7,6 +7,30 @@
   }
 }
 
+@keyframes rl-spin-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rl-chasing-arc {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124px;
+  }
+}
+
 @keyframes rl-bounce {
   0%, 80%, 100% {
     transform: translateY(0);

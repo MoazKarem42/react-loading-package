@@ -180,3 +180,264 @@
 .rl-bars-bar:nth-child(5) {
   animation-delay: 0s;
 }
+
+/* DualRing Loader */
+.rl-dual-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-dual-ring--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-dual-ring--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-dual-ring--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-dual-ring--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-dual-ring-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-dual-ring-track {
+  stroke: var(--rl-spinner-track);
+  fill: none;
+}
+
+.rl-dual-ring-outer {
+  stroke: var(--rl-dual-ring-outer, var(--rl-primary));
+  fill: none;
+  transform-origin: center;
+  animation: rl-spin var(--rl-speed, 1.2s) linear infinite;
+}
+
+.rl-dual-ring-inner {
+  stroke: var(--rl-dual-ring-inner, var(--rl-primary));
+  fill: none;
+  transform-origin: center;
+  animation: rl-spin-reverse var(--rl-inner-speed, calc(var(--rl-speed, 1.2s) * 0.8)) linear infinite;
+}
+
+/* ChasingRing Loader */
+.rl-chasing-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-chasing-ring--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-chasing-ring--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-chasing-ring--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-chasing-ring--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-chasing-ring-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: rl-spin var(--rl-speed, 1.4s) linear infinite;
+}
+
+.rl-chasing-ring-track {
+  stroke: var(--rl-spinner-track);
+  fill: none;
+}
+
+.rl-chasing-ring-arc {
+  stroke: var(--rl-chasing-ring-color, var(--rl-primary));
+  stroke-linecap: round;
+  fill: none;
+  animation: rl-chasing-arc var(--rl-speed, 1.4s) ease-in-out infinite;
+}
+
+/* DashedSpinner Loader */
+.rl-dashed-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  animation: rl-spin var(--rl-speed, 1s) linear infinite;
+}
+
+.rl-dashed-spinner--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-dashed-spinner--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-dashed-spinner--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-dashed-spinner--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-dashed-spinner-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-dashed-spinner-track {
+  stroke: var(--rl-spinner-track);
+  fill: none;
+}
+
+.rl-dashed-spinner-head {
+  stroke: var(--rl-dashed-spinner-color, var(--rl-primary));
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Orbit Loader */
+.rl-orbit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-orbit--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-orbit--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-orbit--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-orbit--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-orbit-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-orbit-track {
+  stroke: var(--rl-orbit-track, var(--rl-spinner-track));
+  fill: none;
+}
+
+.rl-orbit-satellite {
+  transform-origin: center;
+  animation: rl-spin var(--rl-speed, 1.2s) linear infinite;
+}
+
+.rl-orbit-dot {
+  fill: var(--rl-orbit-color, var(--rl-primary));
+}
+
+.rl-orbit-core {
+  fill: var(--rl-orbit-color, var(--rl-primary));
+  opacity: 0.8;
+}
+
+/* Clock Loader */
+.rl-clock {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-clock--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-clock--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-clock--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-clock--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-clock-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-clock-rim {
+  stroke: var(--rl-clock-color, var(--rl-primary));
+  fill: var(--rl-clock-face, transparent);
+}
+
+.rl-clock-pin {
+  fill: var(--rl-clock-color, var(--rl-primary));
+}
+
+.rl-clock-minute {
+  stroke: var(--rl-clock-color, var(--rl-primary));
+  stroke-linecap: round;
+  transform-origin: center;
+  animation: rl-spin var(--rl-speed, 2s) linear infinite;
+}
+
+.rl-clock-hour {
+  stroke: var(--rl-clock-color, var(--rl-primary));
+  stroke-linecap: round;
+  transform-origin: center;
+  animation: rl-spin calc(var(--rl-speed, 2s) * 6) linear infinite;
+}

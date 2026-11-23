@@ -4,6 +4,11 @@ export type LoaderCategory = 'loaders' | 'skeletons' | 'state';
 
 export type LoaderId =
   | 'spinner'
+  | 'dual-ring'
+  | 'chasing-ring'
+  | 'dashed-spinner'
+  | 'orbit'
+  | 'clock'
   | 'dots'
   | 'bars'
   | 'pulse'

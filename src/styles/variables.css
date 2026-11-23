@@ -14,6 +14,15 @@
   --rl-size-lg: 36px;
   --rl-size-xl: 48px;
 
+  /* Batch 1: Spinners & Rings tokens */
+  --rl-dual-ring-outer: var(--rl-primary);
+  --rl-dual-ring-inner: var(--rl-primary);
+  --rl-chasing-ring-color: var(--rl-primary);
+  --rl-dashed-spinner-color: var(--rl-primary);
+  --rl-orbit-color: var(--rl-primary);
+  --rl-orbit-track: var(--rl-spinner-track);
+  --rl-clock-color: var(--rl-primary);
+
   /* Dots tokens */
   --rl-dots-size-sm: 6px;
   --rl-dots-size-md: 8px;

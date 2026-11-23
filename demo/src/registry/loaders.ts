@@ -1,4 +1,4 @@
-import { Spinner, Dots, Bars } from 'react-loading-kit';
+import { Spinner, DualRing, ChasingRing, DashedSpinner, Orbit, Clock, Dots, Bars } from 'react-loading-kit';
 import {
   PulsePreview,
   RingPreview,
@@ -70,6 +70,319 @@ export const loaderRegistry: Record<LoaderId, LoaderRegistryItem> = {
       const attrs = [sizeVal, colorVal, thickVal, speedVal].filter(Boolean).join(' ');
       const attrStr = attrs ? ` ${attrs}` : '';
       return `import { Spinner } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Spinner${attrStr} />;\n}`;
+    },
+  },
+
+  'dual-ring': {
+    id: 'dual-ring',
+    name: 'DualRing',
+    category: 'loaders',
+    description: 'Concentric double rings rotating in opposing directions.',
+    component: DualRing,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      secondaryColor: '#60A5FA',
+      thickness: 2.5,
+      speed: 1.2,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Outer Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'secondaryColor',
+        label: 'Inner Color',
+        type: 'color',
+        defaultValue: '#60A5FA',
+      },
+      {
+        name: 'thickness',
+        label: 'Thickness',
+        type: 'number',
+        min: 1,
+        max: 6,
+        step: 0.5,
+        unit: 'px',
+        defaultValue: 2.5,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const secColorVal =
+        props.secondaryColor && props.secondaryColor !== '#60A5FA'
+          ? `secondaryColor="${props.secondaryColor}"`
+          : '';
+      const thickVal = props.thickness !== 2.5 ? `thickness={${props.thickness}}` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, secColorVal, thickVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DualRing } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DualRing${attrStr} />;\n}`;
+    },
+  },
+
+  'chasing-ring': {
+    id: 'chasing-ring',
+    name: 'ChasingRing',
+    category: 'loaders',
+    description: 'Material Design-style expanding and contracting circular arc.',
+    component: ChasingRing,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      thickness: 3,
+      speed: 1.4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'thickness',
+        label: 'Thickness',
+        type: 'number',
+        min: 1,
+        max: 6,
+        step: 0.5,
+        unit: 'px',
+        defaultValue: 3,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.5,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const thickVal = props.thickness !== 3 ? `thickness={${props.thickness}}` : '';
+      const speedVal = props.speed !== 1.4 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, thickVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { ChasingRing } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <ChasingRing${attrStr} />;\n}`;
+    },
+  },
+
+  'dashed-spinner': {
+    id: 'dashed-spinner',
+    name: 'DashedSpinner',
+    category: 'loaders',
+    description: 'Rotating dashed circular ring indicator for upload and sync states.',
+    component: DashedSpinner,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      thickness: 3,
+      dashArray: '4 4',
+      speed: 1.0,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'thickness',
+        label: 'Thickness',
+        type: 'number',
+        min: 1,
+        max: 6,
+        step: 0.5,
+        unit: 'px',
+        defaultValue: 3,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.3,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.0,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const thickVal = props.thickness !== 3 ? `thickness={${props.thickness}}` : '';
+      const speedVal = props.speed !== 1.0 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, thickVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DashedSpinner } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DashedSpinner${attrStr} />;\n}`;
+    },
+  },
+
+  orbit: {
+    id: 'orbit',
+    name: 'Orbit',
+    category: 'loaders',
+    description: 'Smooth satellite dot orbiting around a circular track ring.',
+    component: Orbit,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      dotSize: 5,
+      showCore: false,
+      speed: 1.2,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'dotSize',
+        label: 'Dot Size',
+        type: 'number',
+        min: 2,
+        max: 10,
+        step: 1,
+        unit: 'px',
+        defaultValue: 5,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const dotVal = props.dotSize !== 5 ? `dotSize={${props.dotSize}}` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, dotVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { Orbit } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Orbit${attrStr} />;\n}`;
+    },
+  },
+
+  clock: {
+    id: 'clock',
+    name: 'Clock',
+    category: 'loaders',
+    description: 'Rotating hour and minute hands for scheduling and long-running operations.',
+    component: Clock,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      thickness: 2,
+      speed: 2.0,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'thickness',
+        label: 'Thickness',
+        type: 'number',
+        min: 1,
+        max: 5,
+        step: 0.5,
+        unit: 'px',
+        defaultValue: 2,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.5,
+        max: 5,
+        step: 0.5,
+        unit: 's',
+        defaultValue: 2.0,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const thickVal = props.thickness !== 2 ? `thickness={${props.thickness}}` : '';
+      const speedVal = props.speed !== 2.0 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, thickVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { Clock } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Clock${attrStr} />;\n}`;
     },
   },
 
