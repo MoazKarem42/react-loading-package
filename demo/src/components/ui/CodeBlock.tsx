@@ -18,8 +18,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     position: 'relative',
     backgroundColor: 'var(--rl-demo-surface)',
     border: '1px solid var(--rl-demo-border)',
-    borderRadius: 'var(--rl-demo-radius-md)',
+    borderRadius: 'var(--rl-demo-radius-lg)',
     overflow: 'hidden',
+    boxShadow: 'var(--rl-demo-shadow-sm)',
     ...style,
   };
 
@@ -27,18 +28,23 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '0.4rem 0.75rem',
+    padding: '8px 16px',
     borderBottom: '1px solid var(--rl-demo-border)',
     backgroundColor: 'var(--rl-demo-surface-elevated)',
-    fontSize: '0.75rem',
+    fontSize: '11px',
+    fontFamily: 'var(--rl-demo-font-sans)',
+    fontWeight: 500,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase',
     color: 'var(--rl-demo-text-muted)',
   };
 
   const preStyle: React.CSSProperties = {
-    padding: '0.875rem 1rem',
+    padding: '16px',
     overflowX: 'auto',
-    fontSize: '0.85rem',
-    color: '#e4e4e7',
+    fontSize: '12px',
+    fontFamily: 'var(--rl-demo-font-mono)',
+    color: 'var(--rl-demo-text-secondary)',
     margin: 0,
     lineHeight: 1.6,
   };
@@ -47,7 +53,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     <div style={containerStyle} {...props}>
       <div style={headerStyle}>
         <span>{language}</span>
-        {showCopy && <CopyButton textToCopy={code} />}
+        {showCopy && <CopyButton textToCopy={code} label="Copy" />}
       </div>
       <pre style={preStyle}>
         <code>{code}</code>

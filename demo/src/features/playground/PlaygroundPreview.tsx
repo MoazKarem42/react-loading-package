@@ -4,77 +4,73 @@ import type { LoaderRegistryItem } from '@/registry/types';
 export interface PlaygroundPreviewProps {
   item: LoaderRegistryItem;
   props: Record<string, unknown>;
+  backgroundMode: 'dark' | 'light';
+  replayKey: number;
 }
 
-export const PlaygroundPreview: React.FC<PlaygroundPreviewProps> = ({ item, props }) => {
-  const [backgroundMode, setBackgroundMode] = React.useState<'dark' | 'light'>('dark');
+export const PlaygroundPreview: React.FC<PlaygroundPreviewProps> = ({
+  item,
+  props,
+  backgroundMode,
+  replayKey,
+}) => {
   const Component = item.component;
 
-  const containerStyle: React.CSSProperties = {
-    backgroundColor: backgroundMode === 'dark' ? 'var(--rl-demo-surface)' : '#ffffff',
-    border: '1px solid var(--rl-demo-border)',
-    borderRadius: 'var(--rl-demo-radius-lg)',
-    overflow: 'hidden',
+  const canvasStyle: React.CSSProperties = {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '360px',
-  };
-
-  const topBarStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0.75rem 1rem',
-    borderBottom: '1px solid var(--rl-demo-border)',
-    backgroundColor: 'var(--rl-demo-surface-elevated)',
-  };
-
-  const canvasStyle: React.CSSProperties = {
-    flex: 1,
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '2.5rem',
+    minHeight: '496px',
+    backgroundColor: backgroundMode === 'dark' ? 'var(--rl-demo-bg-canvas)' : '#FFFFFF',
+    overflow: 'hidden',
+    padding: '48px 32px',
+  };
+
+  const gridOverlayStyle: React.CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(64, 64, 64, 1) 7%, rgba(64, 64, 64, 0) 7%)',
+    backgroundSize: '24px 24px',
+    opacity: backgroundMode === 'dark' ? 0.2 : 0.08,
+    pointerEvents: 'none',
+  };
+
+  const telemetryRowStyle: React.CSSProperties = {
+    position: 'absolute',
+    bottom: '16px',
+    left: '16px',
+    right: '16px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    pointerEvents: 'none',
+  };
+
+  const telemetryBadgeStyle: React.CSSProperties = {
+    padding: '2px 8px',
+    backgroundColor: backgroundMode === 'dark' ? 'rgba(31, 31, 31, 0.8)' : 'rgba(240, 240, 240, 0.8)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-xs)',
+    fontFamily: 'var(--rl-demo-font-mono)',
+    fontSize: '12px',
+    lineHeight: '18px',
+    color: 'var(--rl-demo-text-muted)',
+    backdropFilter: 'blur(8px)',
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={topBarStyle}>
-        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--rl-demo-text)' }}>
-          {item.name} Preview
-        </span>
-        <div style={{ display: 'flex', gap: '0.35rem' }}>
-          <button
-            type="button"
-            onClick={() => setBackgroundMode('dark')}
-            style={{
-              padding: '0.2rem 0.5rem',
-              fontSize: '0.75rem',
-              borderRadius: 'var(--rl-demo-radius-sm)',
-              backgroundColor: backgroundMode === 'dark' ? 'var(--rl-demo-border)' : 'transparent',
-              color: 'var(--rl-demo-text)',
-            }}
-          >
-            Dark
-          </button>
-          <button
-            type="button"
-            onClick={() => setBackgroundMode('light')}
-            style={{
-              padding: '0.2rem 0.5rem',
-              fontSize: '0.75rem',
-              borderRadius: 'var(--rl-demo-radius-sm)',
-              backgroundColor: backgroundMode === 'light' ? 'var(--rl-demo-border)' : 'transparent',
-              color: 'var(--rl-demo-text)',
-            }}
-          >
-            Light
-          </button>
-        </div>
+    <div style={canvasStyle}>
+      <div style={gridOverlayStyle} />
+
+      <div key={replayKey} style={{ zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Component {...props} />
       </div>
 
-      <div style={canvasStyle}>
-        <Component {...props} />
+      <div style={telemetryRowStyle}>
+        <div style={telemetryBadgeStyle}>role=&quot;status&quot;</div>
+        <div style={telemetryBadgeStyle}>60fps · CSS engine</div>
       </div>
     </div>
   );

@@ -1,95 +1,444 @@
 import * as React from 'react';
 import { Container } from '@/components/layout/Container';
-import { CodeBlock } from '@/components/ui/CodeBlock';
+
+interface ThemePreset {
+  id: string;
+  name: string;
+  color: string;
+  tag: string;
+}
+
+const themePresets: ThemePreset[] = [
+  { id: 'monochrome', name: 'Vercel Monochrome', color: '#FFFFFF', tag: 'Active' },
+  { id: 'blue', name: 'Vercel Blue', color: '#508EFF', tag: '#508EFF' },
+  { id: 'amber', name: 'Amber Alert', color: '#E5A623', tag: '#E5A623' },
+];
+
+interface ApiPropRow {
+  prop: string;
+  type: string;
+  defaultVal: string;
+  description: string;
+}
+
+const apiPropsData: ApiPropRow[] = [
+  {
+    prop: 'size',
+    type: 'string | number',
+    defaultVal: "'md' (32px)",
+    description: "Preset ('sm' | 'md' | 'lg') or numeric pixel value for loader bounding box.",
+  },
+  {
+    prop: 'color',
+    type: 'string',
+    defaultVal: "'currentColor'",
+    description: "Any valid CSS color string or custom property (e.g. 'var(--my-accent)').",
+  },
+  {
+    prop: 'speed',
+    type: "'slow' | 'normal' | 'fast' | number",
+    defaultVal: "'normal' (0.8s)",
+    description: 'Animation cycle duration speed preset or specific second interval value.',
+  },
+  {
+    prop: 'thickness',
+    type: 'number',
+    defaultVal: '3',
+    description: 'Stroke thickness in pixels for border/ring SVG loaders.',
+  },
+  {
+    prop: 'ariaLabel',
+    type: 'string',
+    defaultVal: "'Loading...'",
+    description: 'Screen reader text announcement for accessibility attributes.',
+  },
+  {
+    prop: 'shimmer',
+    type: 'boolean',
+    defaultVal: 'true',
+    description: 'Enables CSS linear shimmer gradient sweep on skeleton components.',
+  },
+];
 
 export const DocsSection: React.FC = () => {
+  const [activeThemeId, setActiveThemeId] = React.useState<string>('monochrome');
+
+  const handleSelectTheme = (preset: ThemePreset) => {
+    setActiveThemeId(preset.id);
+    const rootEl = document.documentElement;
+    if (preset.id === 'blue') {
+      rootEl.style.setProperty('--rl-primary', '#508EFF');
+      rootEl.style.setProperty('--rl-skeleton-highlight', '#1e293b');
+    } else if (preset.id === 'amber') {
+      rootEl.style.setProperty('--rl-primary', '#E5A623');
+      rootEl.style.setProperty('--rl-skeleton-highlight', '#2e2010');
+    } else {
+      rootEl.style.setProperty('--rl-primary', '#FFFFFF');
+      rootEl.style.setProperty('--rl-skeleton-highlight', '#282828');
+    }
+  };
+
   const sectionStyle: React.CSSProperties = {
-    padding: '4rem 0',
-    borderTop: '1px solid var(--rl-demo-border)',
+    padding: '64px 0',
+    backgroundColor: 'var(--rl-demo-bg)',
+    borderBottom: '1px solid var(--rl-demo-border)',
   };
 
-  const headerStyle: React.CSSProperties = {
-    marginBottom: '2.5rem',
+  const metricGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '16px',
+    marginBottom: '24px',
   };
 
-  const titleStyle: React.CSSProperties = {
-    fontSize: '1.75rem',
-    fontWeight: 700,
-    marginBottom: '0.5rem',
-  };
-
-  const descStyle: React.CSSProperties = {
-    color: 'var(--rl-demo-text-muted)',
-    fontSize: '0.95rem',
-  };
-
-  const blockStyle: React.CSSProperties = {
+  const metricCardStyle: React.CSSProperties = {
+    backgroundColor: 'var(--rl-demo-surface)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-lg)',
+    padding: '24px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.75rem',
-    marginBottom: '2rem',
+    gap: '8px',
   };
 
-  const blockTitleStyle: React.CSSProperties = {
-    fontSize: '1.1rem',
-    fontWeight: 600,
+  const metricTitleStyle: React.CSSProperties = {
+    fontFamily: 'var(--rl-demo-font-mono)',
+    fontSize: '13px',
+    fontWeight: 500,
+    lineHeight: '20px',
     color: 'var(--rl-demo-text)',
   };
 
-  const textStyle: React.CSSProperties = {
+  const metricDescStyle: React.CSSProperties = {
+    fontFamily: 'var(--rl-demo-font-sans)',
+    fontSize: '13px',
+    lineHeight: '18px',
     color: 'var(--rl-demo-text-muted)',
-    fontSize: '0.9rem',
-    lineHeight: 1.6,
+  };
+
+  const themingCardStyle: React.CSSProperties = {
+    backgroundColor: 'var(--rl-demo-surface)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-lg)',
+    padding: '32px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    marginBottom: '64px',
+  };
+
+  const themingHeaderStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px',
+  };
+
+  const themingTitleRowStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  };
+
+  const themingSplitStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gap: '24px',
+    alignItems: 'center',
+  };
+
+  const codeBoxStyle: React.CSSProperties = {
+    backgroundColor: 'var(--rl-demo-surface-elevated)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-sm)',
+    padding: '16px',
+    fontFamily: 'var(--rl-demo-font-mono)',
+    fontSize: '12px',
+    lineHeight: '19.5px',
+    overflowX: 'auto',
+  };
+
+  const presetListStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+  };
+
+  const getPresetBtnStyle = (isActive: boolean): React.CSSProperties => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '12px 16px',
+    borderRadius: 'var(--rl-demo-radius-sm)',
+    backgroundColor: isActive ? 'var(--rl-demo-surface-active)' : 'var(--rl-demo-surface-elevated)',
+    border: isActive ? '1px solid var(--rl-demo-primary)' : '1px solid var(--rl-demo-border)',
+    color: 'var(--rl-demo-text)',
+    transition: 'all 0.15s ease',
+  });
+
+  //Table Styles
+  const tableFrameStyle: React.CSSProperties = {
+    backgroundColor: 'var(--rl-demo-surface)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-lg)',
+    boxShadow: 'var(--rl-demo-shadow-sm)',
+    overflowX: 'auto',
+    marginTop: '24px',
+  };
+
+  const tableHeaderColStyle: React.CSSProperties = {
+    fontFamily: 'var(--rl-demo-font-sans)',
+    fontSize: '11px',
+    fontWeight: 500,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase',
+    color: 'var(--rl-demo-text-muted)',
+    padding: '14px 16px',
+    textAlign: 'left',
+    backgroundColor: 'var(--rl-demo-surface-elevated)',
+    borderBottom: '1px solid var(--rl-demo-border)',
+  };
+
+  const tableCellColStyle: React.CSSProperties = {
+    padding: '14px 16px',
+    borderTop: '1px solid var(--rl-demo-border)',
+    verticalAlign: 'middle',
   };
 
   return (
-    <section id="docs" style={sectionStyle}>
-      <Container size="xl">
-        <div style={headerStyle}>
-          <h2 style={titleStyle}>Quick Start & Documentation</h2>
-          <p style={descStyle}>Integrate accessible loaders into your application in seconds.</p>
-        </div>
+    <>
+      {/*Section - WHY REACT-LOADING-KIT & THEMING*/}
+      <section style={sectionStyle}>
+        <Container size="xl">
+          <div style={metricGridStyle}>
+            <div style={metricCardStyle}>
+              <div style={metricTitleStyle}>0 Dependencies</div>
+              <p style={metricDescStyle}>
+                Zero runtime packages for ultimate supply chain security and immediate cold-starts.
+              </p>
+            </div>
+            <div style={metricCardStyle}>
+              <div style={metricTitleStyle}>&lt; 4KB Gzipped</div>
+              <p style={metricDescStyle}>
+                Modular tree-shakeable ESM exports. You only ship the exact loader styles used.
+              </p>
+            </div>
+            <div style={metricCardStyle}>
+              <div style={metricTitleStyle}>Next.js &amp; SSR Ready</div>
+              <p style={metricDescStyle}>
+                Zero hydration flicker or client layout shifts. Compatible with React Server Components.
+              </p>
+            </div>
+            <div style={metricCardStyle}>
+              <div style={metricTitleStyle}>WAI-ARIA Compliant</div>
+              <p style={metricDescStyle}>
+                Pre-wired with polite live-regions, <code style={{ fontFamily: 'var(--rl-demo-font-mono)' }}>role=&quot;status&quot;</code>, and customizable screen reader labels.
+              </p>
+            </div>
+          </div>
 
-        <div style={blockStyle}>
-          <h3 style={blockTitleStyle}>1. Installation</h3>
-          <p style={textStyle}>Install the package using your favorite package manager:</p>
-          <CodeBlock code="npm install react-loading-kit" language="bash" />
-        </div>
+          <div style={themingCardStyle}>
+            <div style={themingHeaderStyle}>
+              <div style={themingTitleRowStyle}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--rl-demo-accent)" strokeWidth="2">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+                <h3
+                  style={{
+                    fontFamily: 'var(--rl-demo-font-sans)',
+                    fontSize: '24px',
+                    fontWeight: 500,
+                    lineHeight: '32px',
+                    letterSpacing: '-0.025em',
+                    color: 'var(--rl-demo-text)',
+                  }}
+                >
+                  Global CSS Custom Properties
+                </h3>
+              </div>
+              <p style={{ fontFamily: 'var(--rl-demo-font-sans)', fontSize: '13px', color: 'var(--rl-demo-text-muted)' }}>
+                Seamlessly override design tokens at the document or container root.
+              </p>
+            </div>
 
-        <div style={blockStyle}>
-          <h3 style={blockTitleStyle}>2. Import Styles</h3>
-          <p style={textStyle}>
-            Import the CSS stylesheet once at the root of your application (e.g. `main.tsx`, `App.tsx`, or `_app.tsx`):
-          </p>
-          <CodeBlock code='import "react-loading-kit/styles.css";' language="tsx" />
-        </div>
+            <div style={themingSplitStyle}>
+              {/*Code Definition*/}
+              <div style={codeBoxStyle}>
+                <span style={{ color: 'var(--rl-demo-text-muted)' }}>:root &#123;{'\n'}</span>
+                <span style={{ color: 'var(--rl-demo-accent)' }}>  --rl-primary</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>: </span>
+                <span style={{ color: '#FFFFFF', fontWeight: 700 }}>#FFFFFF</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>;{'\n'}</span>
+                <span style={{ color: 'var(--rl-demo-accent)' }}>  --rl-skeleton-base</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>: </span>
+                <span style={{ color: 'var(--rl-demo-text-dim)', fontWeight: 700 }}>#161616</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>;{'\n'}</span>
+                <span style={{ color: 'var(--rl-demo-accent)' }}>  --rl-skeleton-highlight</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>: </span>
+                <span style={{ color: 'var(--rl-demo-text-dim)', fontWeight: 700 }}>#282828</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>;{'\n'}</span>
+                <span style={{ color: 'var(--rl-demo-accent)' }}>  --rl-speed</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>: </span>
+                <span style={{ color: 'var(--rl-demo-accent-ice)', fontWeight: 700 }}>0.8s</span>
+                <span style={{ color: 'var(--rl-demo-text-secondary)' }}>;{'\n'}</span>
+                <span style={{ color: 'var(--rl-demo-text-muted)' }}>&#125;</span>
+              </div>
 
-        <div style={blockStyle}>
-          <h3 style={blockTitleStyle}>3. Basic Usage</h3>
-          <p style={textStyle}>Import and render components with accessible defaults:</p>
-          <CodeBlock
-            code={`import { Spinner, Dots, Bars } from "react-loading-kit";
+              {/*Theme Switcher*/}
+              <div>
+                <div
+                  style={{
+                    fontFamily: 'var(--rl-demo-font-sans)',
+                    fontSize: '11px',
+                    fontWeight: 500,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    color: 'var(--rl-demo-text-muted)',
+                    marginBottom: '8px',
+                  }}
+                >
+                  CHOOSE PRESET
+                </div>
+                <div style={presetListStyle}>
+                  {themePresets.map((preset) => {
+                    const isActive = activeThemeId === preset.id;
+                    return (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        style={getPresetBtnStyle(isActive)}
+                        onClick={() => handleSelectTheme(preset)}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span
+                            style={{
+                              width: '12px',
+                              height: '12px',
+                              borderRadius: '50%',
+                              backgroundColor: preset.color,
+                            }}
+                          />
+                          <span style={{ fontFamily: 'var(--rl-demo-font-sans)', fontSize: '13px', fontWeight: 500 }}>
+                            {preset.name}
+                          </span>
+                        </div>
+                        <span
+                          style={{
+                            fontFamily: 'var(--rl-demo-font-mono)',
+                            fontSize: '12px',
+                            color: 'var(--rl-demo-text-muted)',
+                          }}
+                        >
+                          {preset.tag}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
 
-export function LoadingCard() {
-  return (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Spinner size="md" color="#3b82f6" />
-      <Dots size="md" color="#10b981" />
-      <Bars size="md" color="#f59e0b" />
-    </div>
-  );
-}`}
-            language="tsx"
-          />
-        </div>
+      {/*Section - API REFERENCE TABLE*/}
+      <section id="api" style={sectionStyle}>
+        <Container size="xl">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--rl-demo-font-sans)',
+                fontSize: '32px',
+                fontWeight: 600,
+                lineHeight: '40px',
+                letterSpacing: '-0.025em',
+                color: 'var(--rl-demo-text)',
+              }}
+            >
+              API Reference
+            </h2>
+            <p
+              style={{
+                fontFamily: 'var(--rl-demo-font-sans)',
+                fontSize: '14px',
+                lineHeight: '20px',
+                letterSpacing: '-0.005em',
+                color: 'var(--rl-demo-text-muted)',
+              }}
+            >
+              Core loader props accepted by Spinner, Ring, Dots, and skeleton primitives.
+            </p>
+          </div>
 
-        <div style={blockStyle}>
-          <h3 style={blockTitleStyle}>4. Accessibility Standards</h3>
-          <p style={textStyle}>
-            All indicators include <code>role="status"</code> and <code>aria-live="polite"</code> out-of-the-box. Decorative animation elements are tagged with <code>aria-hidden="true"</code>, and customizable announcements can be provided via the <code>label</code> prop (defaults to "Loading...").
-          </p>
-        </div>
-      </Container>
-    </section>
+          <div style={tableFrameStyle}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <thead>
+                <tr>
+                  <th style={tableHeaderColStyle}>PROP</th>
+                  <th style={tableHeaderColStyle}>TYPE</th>
+                  <th style={tableHeaderColStyle}>DEFAULT</th>
+                  <th style={tableHeaderColStyle}>DESCRIPTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {apiPropsData.map((row) => (
+                  <tr key={row.prop}>
+                    <td style={tableCellColStyle}>
+                      <code
+                        style={{
+                          fontFamily: 'var(--rl-demo-font-mono)',
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          color: 'var(--rl-demo-text)',
+                        }}
+                      >
+                        {row.prop}
+                      </code>
+                    </td>
+                    <td style={tableCellColStyle}>
+                      <span
+                        style={{
+                          padding: '1px 8px',
+                          backgroundColor: 'var(--rl-demo-surface-elevated)',
+                          border: '1px solid var(--rl-demo-border)',
+                          borderRadius: 'var(--rl-demo-radius-xs)',
+                          fontFamily: 'var(--rl-demo-font-mono)',
+                          fontSize: '12px',
+                          color: 'var(--rl-demo-accent)',
+                        }}
+                      >
+                        {row.type}
+                      </span>
+                    </td>
+                    <td style={tableCellColStyle}>
+                      <span
+                        style={{
+                          fontFamily: 'var(--rl-demo-font-mono)',
+                          fontSize: '12px',
+                          color: 'var(--rl-demo-text-muted)',
+                        }}
+                      >
+                        {row.defaultVal}
+                      </span>
+                    </td>
+                    <td style={tableCellColStyle}>
+                      <span
+                        style={{
+                          fontFamily: 'var(--rl-demo-font-sans)',
+                          fontSize: '13px',
+                          lineHeight: '18px',
+                          color: 'var(--rl-demo-text-dim)',
+                        }}
+                      >
+                        {row.description}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Container>
+      </section>
+    </>
   );
 };

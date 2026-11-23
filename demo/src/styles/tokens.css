@@ -1,23 +1,50 @@
 :root {
-  /* Color Tokens */
-  --rl-demo-bg: #09090b;
-  --rl-demo-surface: #121215;
-  --rl-demo-surface-elevated: #18181b;
-  --rl-demo-border: #27272a;
-  --rl-demo-border-hover: #3f3f46;
-  --rl-demo-text: #f4f4f5;
-  --rl-demo-text-muted: #a1a1aa;
-  --rl-demo-primary: #3b82f6;
-  --rl-demo-primary-hover: #2563eb;
-  --rl-demo-accent: #6366f1;
+  /* Surfaces & Backgrounds */
+  --rl-demo-bg: #0e0e0e;
+  --rl-demo-bg-canvas: #050505;
+  --rl-demo-surface: #1b1b1b;
+  --rl-demo-surface-elevated: #1f1f1f;
+  --rl-demo-surface-active: #2a2a2a;
+  --rl-demo-surface-pill: #353535;
 
-  /* Typography */
-  --rl-demo-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  --rl-demo-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* Borders & Dividers */
+  --rl-demo-border: #2a2a2a;
+  --rl-demo-border-subtle: #1f1f1f;
+  --rl-demo-border-hover: #444748;
 
-  /* Sizing & Spacing */
-  --rl-demo-container-max: 1200px;
-  --rl-demo-radius-sm: 6px;
-  --rl-demo-radius-md: 8px;
-  --rl-demo-radius-lg: 12px;
+  /* Typography Colors */
+  --rl-demo-text: #ffffff;
+  --rl-demo-text-secondary: #e2e2e2;
+  --rl-demo-text-dim: #c4c7c8;
+  --rl-demo-text-muted: #8e9192;
+  --rl-demo-text-subtle: #444748;
+  --rl-demo-text-dark: #2f3131;
+
+  /* Brand & Theme Accents */
+  --rl-demo-primary: #ffffff;
+  --rl-demo-accent: #aec6ff;
+  --rl-demo-accent-blue: #508eff;
+  --rl-demo-accent-amber: #e5a623;
+  --rl-demo-accent-ice: #d8e2ff;
+
+  /* Typography Families */
+  --rl-demo-font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rl-demo-font-mono: "JetBrains Mono", "Liberation Mono", ui-monospace, Menlo, Monaco, monospace;
+
+  /* Border Radii */
+  --rl-demo-radius-xs: 2px;
+  --rl-demo-radius-sm: 4px;
+  --rl-demo-radius-md: 6px;
+  --rl-demo-radius-lg: 8px;
+  --rl-demo-radius-xl: 12px;
+  --rl-demo-radius-full: 9999px;
+
+  /* Box Shadows */
+  --rl-demo-shadow-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  --rl-demo-shadow-md: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --rl-demo-shadow-lg: 0px 8px 10px -6px rgba(0, 0, 0, 0.1), 0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --rl-demo-shadow-workspace: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Layout Container */
+  --rl-demo-container-max: 1280px;
 }

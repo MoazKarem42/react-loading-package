@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "./tokens.css";
 @import "react-loading-kit/styles.css";
 
@@ -7,6 +8,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--rl-demo-font-sans);
   background-color: var(--rl-demo-bg);
@@ -14,6 +19,7 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -34,4 +40,9 @@ button {
 
 pre, code {
   font-family: var(--rl-demo-font-mono);
+}
+
+::selection {
+  background: rgba(174, 198, 255, 0.25);
+  color: #ffffff;
 }

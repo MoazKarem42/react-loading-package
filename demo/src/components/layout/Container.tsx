@@ -6,7 +6,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Container: React.FC<ContainerProps> = ({
   children,
-  size = 'lg',
+  size = 'xl',
   style,
   ...props
 }) => {
@@ -19,9 +19,9 @@ export const Container: React.FC<ContainerProps> = ({
 
   const containerStyle: React.CSSProperties = {
     width: '100%',
-    maxWidth: maxWidthMap[size] || '1200px',
+    maxWidth: maxWidthMap[size] || '1280px',
     margin: '0 auto',
-    padding: '0 1.25rem',
+    padding: '0 48px',
     ...style,
   };
 
