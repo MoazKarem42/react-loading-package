@@ -499,7 +499,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
                   color: 'var(--rl-demo-accent)',
                 }}
               >
-                12 exports
+                {loaderList.length} exports
               </span>
             </div>
             <p style={descStyle}>Click any preset to inspect in the playground.</p>

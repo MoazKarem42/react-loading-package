@@ -33,6 +33,14 @@
   --rl-dots-gap-lg: 8px;
   --rl-dots-gap-xl: 10px;
 
+  /* Batch 2: Dots & Typing tokens */
+  --rl-dots-bounce-color: var(--rl-primary);
+  --rl-dots-fade-color: var(--rl-primary);
+  --rl-dots-scale-color: var(--rl-primary);
+  --rl-dots-typing-color: var(--rl-primary);
+  --rl-dots-circle-color: var(--rl-primary);
+  --rl-dots-circle-dot-size: 4px;
+
   /* Bars tokens */
   --rl-bars-color: var(--rl-primary);
   --rl-bars-width-sm: 3px;

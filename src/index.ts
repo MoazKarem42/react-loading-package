@@ -15,6 +15,16 @@ export { Dots } from "./components/loaders/Dots";
 export type { DotsProps } from "./components/loaders/Dots";
 export { Bars } from "./components/loaders/Bars";
 export type { BarsProps } from "./components/loaders/Bars";
+export { DotsBounce } from "./components/loaders/DotsBounce";
+export type { DotsBounceProps } from "./components/loaders/DotsBounce";
+export { DotsFade } from "./components/loaders/DotsFade";
+export type { DotsFadeProps } from "./components/loaders/DotsFade";
+export { DotsScale } from "./components/loaders/DotsScale";
+export type { DotsScaleProps } from "./components/loaders/DotsScale";
+export { DotsTyping } from "./components/loaders/DotsTyping";
+export type { DotsTypingProps } from "./components/loaders/DotsTyping";
+export { DotsCircle } from "./components/loaders/DotsCircle";
+export type { DotsCircleProps } from "./components/loaders/DotsCircle";
 
 //Types
 export type { LoaderSize, BaseLoaderProps } from "./types";

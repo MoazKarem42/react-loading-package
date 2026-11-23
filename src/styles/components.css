@@ -441,3 +441,283 @@
   transform-origin: center;
   animation: rl-spin calc(var(--rl-speed, 2s) * 6) linear infinite;
 }
+
+/* ==========================================================================
+   Batch 2: Dots & Typing Loaders
+   ========================================================================== */
+
+/* DotsBounce Loader */
+.rl-dots-bounce {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-dots-gap, var(--rl-dots-gap-md, 6px));
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding-top: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.5);
+  padding-bottom: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.1);
+}
+
+.rl-dots-bounce--sm {
+  --rl-dots-size: var(--rl-dots-size-sm, 6px);
+  --rl-dots-gap: var(--rl-dots-gap-sm, 4px);
+}
+
+.rl-dots-bounce--md {
+  --rl-dots-size: var(--rl-dots-size-md, 8px);
+  --rl-dots-gap: var(--rl-dots-gap-md, 6px);
+}
+
+.rl-dots-bounce--lg {
+  --rl-dots-size: var(--rl-dots-size-lg, 12px);
+  --rl-dots-gap: var(--rl-dots-gap-lg, 8px);
+}
+
+.rl-dots-bounce--xl {
+  --rl-dots-size: var(--rl-dots-size-xl, 16px);
+  --rl-dots-gap: var(--rl-dots-gap-xl, 10px);
+}
+
+.rl-dots-bounce-dot {
+  display: inline-block;
+  width: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  height: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  border-radius: 50%;
+  background-color: var(--rl-dots-bounce-color, var(--rl-primary));
+  animation: rl-dots-bounce var(--rl-speed, 1.4s) infinite ease-in-out both;
+}
+
+.rl-dots-bounce-dot:nth-child(1) {
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.32);
+}
+
+.rl-dots-bounce-dot:nth-child(2) {
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.16);
+}
+
+.rl-dots-bounce-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* DotsFade Loader */
+.rl-dots-fade {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-dots-gap, var(--rl-dots-gap-md, 6px));
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-dots-fade--sm {
+  --rl-dots-size: var(--rl-dots-size-sm, 6px);
+  --rl-dots-gap: var(--rl-dots-gap-sm, 4px);
+}
+
+.rl-dots-fade--md {
+  --rl-dots-size: var(--rl-dots-size-md, 8px);
+  --rl-dots-gap: var(--rl-dots-gap-md, 6px);
+}
+
+.rl-dots-fade--lg {
+  --rl-dots-size: var(--rl-dots-size-lg, 12px);
+  --rl-dots-gap: var(--rl-dots-gap-lg, 8px);
+}
+
+.rl-dots-fade--xl {
+  --rl-dots-size: var(--rl-dots-size-xl, 16px);
+  --rl-dots-gap: var(--rl-dots-gap-xl, 10px);
+}
+
+.rl-dots-fade-dot {
+  display: inline-block;
+  width: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  height: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  border-radius: 50%;
+  background-color: var(--rl-dots-fade-color, var(--rl-primary));
+  animation: rl-dots-fade var(--rl-speed, 1.2s) infinite ease-in-out both;
+}
+
+.rl-dots-fade-dot:nth-child(1) {
+  animation-delay: calc(var(--rl-speed, 1.2s) * -0.4);
+}
+
+.rl-dots-fade-dot:nth-child(2) {
+  animation-delay: calc(var(--rl-speed, 1.2s) * -0.2);
+}
+
+.rl-dots-fade-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* DotsScale Loader */
+.rl-dots-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-dots-gap, var(--rl-dots-gap-md, 6px));
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-dots-scale--sm {
+  --rl-dots-size: var(--rl-dots-size-sm, 6px);
+  --rl-dots-gap: var(--rl-dots-gap-sm, 4px);
+}
+
+.rl-dots-scale--md {
+  --rl-dots-size: var(--rl-dots-size-md, 8px);
+  --rl-dots-gap: var(--rl-dots-gap-md, 6px);
+}
+
+.rl-dots-scale--lg {
+  --rl-dots-size: var(--rl-dots-size-lg, 12px);
+  --rl-dots-gap: var(--rl-dots-gap-lg, 8px);
+}
+
+.rl-dots-scale--xl {
+  --rl-dots-size: var(--rl-dots-size-xl, 16px);
+  --rl-dots-gap: var(--rl-dots-gap-xl, 10px);
+}
+
+.rl-dots-scale-dot {
+  display: inline-block;
+  width: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  height: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  border-radius: 50%;
+  background-color: var(--rl-dots-scale-color, var(--rl-primary));
+  animation: rl-dots-scale var(--rl-speed, 1.2s) infinite ease-in-out both;
+}
+
+.rl-dots-scale-dot:nth-child(1) {
+  animation-delay: calc(var(--rl-speed, 1.2s) * -0.4);
+}
+
+.rl-dots-scale-dot:nth-child(2) {
+  animation-delay: calc(var(--rl-speed, 1.2s) * -0.2);
+}
+
+.rl-dots-scale-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* DotsTyping Loader */
+.rl-dots-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rl-dots-gap, var(--rl-dots-gap-md, 6px));
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding-top: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.35);
+  padding-bottom: calc(var(--rl-dots-size, var(--rl-dots-size-md, 8px)) * 0.1);
+}
+
+.rl-dots-typing--sm {
+  --rl-dots-size: var(--rl-dots-size-sm, 6px);
+  --rl-dots-gap: var(--rl-dots-gap-sm, 4px);
+}
+
+.rl-dots-typing--md {
+  --rl-dots-size: var(--rl-dots-size-md, 8px);
+  --rl-dots-gap: var(--rl-dots-gap-md, 6px);
+}
+
+.rl-dots-typing--lg {
+  --rl-dots-size: var(--rl-dots-size-lg, 12px);
+  --rl-dots-gap: var(--rl-dots-gap-lg, 8px);
+}
+
+.rl-dots-typing--xl {
+  --rl-dots-size: var(--rl-dots-size-xl, 16px);
+  --rl-dots-gap: var(--rl-dots-gap-xl, 10px);
+}
+
+.rl-dots-typing-dot {
+  display: inline-block;
+  width: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  height: var(--rl-dots-size, var(--rl-dots-size-md, 8px));
+  border-radius: 50%;
+  background-color: var(--rl-dots-typing-color, var(--rl-primary));
+  animation: rl-dots-typing var(--rl-speed, 1.4s) infinite ease-in-out both;
+}
+
+.rl-dots-typing-dot:nth-child(1) {
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.32);
+}
+
+.rl-dots-typing-dot:nth-child(2) {
+  animation-delay: calc(var(--rl-speed, 1.4s) * -0.16);
+}
+
+.rl-dots-typing-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* DotsCircle Loader */
+.rl-dots-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.rl-dots-circle--sm {
+  width: var(--rl-size-sm);
+  height: var(--rl-size-sm);
+}
+
+.rl-dots-circle--md {
+  width: var(--rl-size-md);
+  height: var(--rl-size-md);
+}
+
+.rl-dots-circle--lg {
+  width: var(--rl-size-lg);
+  height: var(--rl-size-lg);
+}
+
+.rl-dots-circle--xl {
+  width: var(--rl-size-xl);
+  height: var(--rl-size-xl);
+}
+
+.rl-dots-circle-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rl-dots-circle-dot {
+  fill: var(--rl-dots-circle-color, var(--rl-primary));
+  animation: rl-dots-circle var(--rl-speed, 1s) infinite linear both;
+}
+
+.rl-dots-circle-dot:nth-child(1) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.875);
+}
+
+.rl-dots-circle-dot:nth-child(2) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.75);
+}
+
+.rl-dots-circle-dot:nth-child(3) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.625);
+}
+
+.rl-dots-circle-dot:nth-child(4) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.5);
+}
+
+.rl-dots-circle-dot:nth-child(5) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.375);
+}
+
+.rl-dots-circle-dot:nth-child(6) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.25);
+}
+
+.rl-dots-circle-dot:nth-child(7) {
+  animation-delay: calc(var(--rl-speed, 1s) * -0.125);
+}
+
+.rl-dots-circle-dot:nth-child(8) {
+  animation-delay: 0s;
+}

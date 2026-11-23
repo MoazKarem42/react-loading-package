@@ -1,4 +1,18 @@
-import { Spinner, DualRing, ChasingRing, DashedSpinner, Orbit, Clock, Dots, Bars } from 'react-loading-kit';
+import {
+  Spinner,
+  DualRing,
+  ChasingRing,
+  DashedSpinner,
+  Orbit,
+  Clock,
+  Dots,
+  Bars,
+  DotsBounce,
+  DotsFade,
+  DotsScale,
+  DotsTyping,
+  DotsCircle,
+} from 'react-loading-kit';
 import {
   PulsePreview,
   RingPreview,
@@ -481,6 +495,306 @@ export const loaderRegistry: Record<LoaderId, LoaderRegistryItem> = {
       const attrs = [sizeVal, colorVal, speedVal].filter(Boolean).join(' ');
       const attrStr = attrs ? ` ${attrs}` : '';
       return `import { Bars } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Bars${attrStr} />;\n}`;
+    },
+  },
+
+  'dots-bounce': {
+    id: 'dots-bounce',
+    name: 'DotsBounce',
+    category: 'loaders',
+    description: 'Three bouncing dots animated loading indicator with sequential wave bounce.',
+    component: DotsBounce,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.4,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.4,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 16,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.4 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DotsBounce } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DotsBounce${attrStr} />;\n}`;
+    },
+  },
+
+  'dots-fade': {
+    id: 'dots-fade',
+    name: 'DotsFade',
+    category: 'loaders',
+    description: 'Three dots fading in and out smoothly in sequence with pure opacity transitions.',
+    component: DotsFade,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.2,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 16,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DotsFade } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DotsFade${attrStr} />;\n}`;
+    },
+  },
+
+  'dots-scale': {
+    id: 'dots-scale',
+    name: 'DotsScale',
+    category: 'loaders',
+    description: 'Three dots scaling up and down smoothly in sequence.',
+    component: DotsScale,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.2,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 16,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DotsScale } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DotsScale${attrStr} />;\n}`;
+    },
+  },
+
+  'dots-typing': {
+    id: 'dots-typing',
+    name: 'DotsTyping',
+    category: 'loaders',
+    description: 'Subtle chat typing wave indicator simulating user conversation typing.',
+    component: DotsTyping,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.4,
+      spacing: 4,
+      label: 'Typing...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.4,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 16,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.4 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DotsTyping } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DotsTyping${attrStr} />;\n}`;
+    },
+  },
+
+  'dots-circle': {
+    id: 'dots-circle',
+    name: 'DotsCircle',
+    category: 'loaders',
+    description: 'Dots arranged in a circle with sequential opacity rotation in classic iOS style.',
+    component: DotsCircle,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      dotSize: 4,
+      speed: 1.0,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'dotSize',
+        label: 'Dot Size',
+        type: 'number',
+        min: 2,
+        max: 8,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.0,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const dotVal = props.dotSize !== 4 ? `dotSize={${props.dotSize}}` : '';
+      const speedVal = props.speed !== 1.0 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, dotVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { DotsCircle } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <DotsCircle${attrStr} />;\n}`;
     },
   },
 
