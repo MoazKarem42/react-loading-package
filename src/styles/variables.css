@@ -56,6 +56,15 @@
   --rl-bars-height-xl: 48px;
   --rl-bars-gap-xl: 8px;
 
+  /* Batch 3: Bars & Waves + Pulse & Radar tokens */
+  --rl-bars-wave-color: var(--rl-primary);
+  --rl-bars-scale-color: var(--rl-primary);
+  --rl-bars-fade-color: var(--rl-primary);
+  --rl-pulse-color: var(--rl-primary);
+  --rl-ripple-color: var(--rl-primary);
+  --rl-ripple-thickness: 2px;
+  --rl-heartbeat-color: var(--rl-primary);
+
   /* Skeleton & Overlay tokens reserved for Phase 2 */
   --rl-skeleton-base: #e2e8f0;
   --rl-skeleton-highlight: #f8fafc;

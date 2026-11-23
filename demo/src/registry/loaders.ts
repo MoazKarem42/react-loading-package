@@ -12,9 +12,14 @@ import {
   DotsScale,
   DotsTyping,
   DotsCircle,
+  BarsWave,
+  BarsScale,
+  BarsFade,
+  Pulse,
+  Ripple,
+  Heartbeat,
 } from 'react-loading-kit';
 import {
-  PulsePreview,
   RingPreview,
   ProgressBarPreview,
   SkeletonPreview,
@@ -498,6 +503,186 @@ export const loaderRegistry: Record<LoaderId, LoaderRegistryItem> = {
     },
   },
 
+  'bars-wave': {
+    id: 'bars-wave',
+    name: 'BarsWave',
+    category: 'loaders',
+    description: 'Animated soundwave equalizer bars loader with sequential traveling wave effect.',
+    component: BarsWave,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.2,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 12,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { BarsWave } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <BarsWave${attrStr} />;\n}`;
+    },
+  },
+
+  'bars-scale': {
+    id: 'bars-scale',
+    name: 'BarsScale',
+    category: 'loaders',
+    description: 'Symmetrically scaling vertical bars loader with smooth center-out expansion.',
+    component: BarsScale,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.0,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.0,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 12,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.0 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { BarsScale } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <BarsScale${attrStr} />;\n}`;
+    },
+  },
+
+  'bars-fade': {
+    id: 'bars-fade',
+    name: 'BarsFade',
+    category: 'loaders',
+    description: 'Vertical bars loader with sequential opacity fade wave transitions.',
+    component: BarsFade,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      speed: 1.0,
+      spacing: 4,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.0,
+      },
+      {
+        name: 'spacing',
+        label: 'Spacing',
+        type: 'number',
+        min: 2,
+        max: 12,
+        step: 1,
+        unit: 'px',
+        defaultValue: 4,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.0 ? `speed={${props.speed}}` : '';
+      const spacingVal = props.spacing !== 4 ? `spacing={${props.spacing}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal, spacingVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { BarsFade } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <BarsFade${attrStr} />;\n}`;
+    },
+  },
+
   'dots-bounce': {
     id: 'dots-bounce',
     name: 'DotsBounce',
@@ -802,13 +987,22 @@ export const loaderRegistry: Record<LoaderId, LoaderRegistryItem> = {
     id: 'pulse',
     name: 'Pulse',
     category: 'loaders',
-    description: 'Pulsing radial ring loading indicator.',
-    component: PulsePreview,
+    description: 'Pulsing radial circular loading indicator with radiating ring animation.',
+    component: Pulse,
     defaultProps: {
+      size: 'md',
       color: '#FFFFFF',
       speed: 1.2,
+      label: 'Loading...',
     },
     controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
       {
         name: 'color',
         label: 'Color',
@@ -826,7 +1020,123 @@ export const loaderRegistry: Record<LoaderId, LoaderRegistryItem> = {
         defaultValue: 1.2,
       },
     ],
-    generateSnippet: () => `import { Pulse } from 'react-loading-kit';\n\nexport default function Example() {\n  return <Pulse size="md" color="#FFFFFF" />;\n}`,
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { Pulse } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Pulse${attrStr} />;\n}`;
+    },
+  },
+
+  ripple: {
+    id: 'ripple',
+    name: 'Ripple',
+    category: 'loaders',
+    description: 'Expanding concentric ripple radar wave indicator with smooth dissipation.',
+    component: Ripple,
+    defaultProps: {
+      size: 'md',
+      color: '#FFFFFF',
+      thickness: 2,
+      speed: 1.6,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#FFFFFF',
+      },
+      {
+        name: 'thickness',
+        label: 'Thickness',
+        type: 'number',
+        min: 1,
+        max: 6,
+        step: 1,
+        unit: 'px',
+        defaultValue: 2,
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.5,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.6,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#FFFFFF' ? `color="${props.color}"` : '';
+      const thickVal = props.thickness !== 2 ? `thickness={${props.thickness}}` : '';
+      const speedVal = props.speed !== 1.6 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, thickVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { Ripple } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Ripple${attrStr} />;\n}`;
+    },
+  },
+
+  heartbeat: {
+    id: 'heartbeat',
+    name: 'Heartbeat',
+    category: 'loaders',
+    description: 'Pulsating cardiac heartbeat loader with realistic physiological double-beat rhythm.',
+    component: Heartbeat,
+    defaultProps: {
+      size: 'md',
+      color: '#EF4444',
+      speed: 1.2,
+      label: 'Loading...',
+    },
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md', 'lg'],
+        defaultValue: 'md',
+      },
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: '#EF4444',
+      },
+      {
+        name: 'speed',
+        label: 'Speed',
+        type: 'number',
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+        unit: 's',
+        defaultValue: 1.2,
+      },
+    ],
+    generateSnippet: (props) => {
+      const sizeVal = props.size !== 'md' ? `size="${props.size}"` : '';
+      const colorVal = props.color && props.color !== '#EF4444' ? `color="${props.color}"` : '';
+      const speedVal = props.speed !== 1.2 ? `speed={${props.speed}}` : '';
+
+      const attrs = [sizeVal, colorVal, speedVal].filter(Boolean).join(' ');
+      const attrStr = attrs ? ` ${attrs}` : '';
+      return `import { Heartbeat } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return <Heartbeat${attrStr} />;\n}`;
+    },
   },
 
   ring: {

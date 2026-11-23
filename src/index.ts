@@ -25,6 +25,18 @@ export { DotsTyping } from "./components/loaders/DotsTyping";
 export type { DotsTypingProps } from "./components/loaders/DotsTyping";
 export { DotsCircle } from "./components/loaders/DotsCircle";
 export type { DotsCircleProps } from "./components/loaders/DotsCircle";
+export { BarsWave } from "./components/loaders/BarsWave";
+export type { BarsWaveProps } from "./components/loaders/BarsWave";
+export { BarsScale } from "./components/loaders/BarsScale";
+export type { BarsScaleProps } from "./components/loaders/BarsScale";
+export { BarsFade } from "./components/loaders/BarsFade";
+export type { BarsFadeProps } from "./components/loaders/BarsFade";
+export { Pulse } from "./components/loaders/Pulse";
+export type { PulseProps } from "./components/loaders/Pulse";
+export { Ripple } from "./components/loaders/Ripple";
+export type { RippleProps } from "./components/loaders/Ripple";
+export { Heartbeat } from "./components/loaders/Heartbeat";
+export type { HeartbeatProps } from "./components/loaders/Heartbeat";
 
 //Types
 export type { LoaderSize, BaseLoaderProps } from "./types";
