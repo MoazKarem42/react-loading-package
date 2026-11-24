@@ -65,8 +65,10 @@
   --rl-ripple-thickness: 2px;
   --rl-heartbeat-color: var(--rl-primary);
 
-  /* Skeleton & Overlay tokens reserved for Phase 2 */
+  /* Skeleton & Overlay tokens */
   --rl-skeleton-base: #e2e8f0;
   --rl-skeleton-highlight: #f8fafc;
+  --rl-skeleton-radius-sm: 4px;
+  --rl-skeleton-radius-md: 8px;
   --rl-overlay-bg: rgba(255, 255, 255, 0.75);
 }

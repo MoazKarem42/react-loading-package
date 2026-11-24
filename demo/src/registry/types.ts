@@ -21,15 +21,9 @@ export type LoaderId =
   | 'bars-fade'
   | 'pulse'
   | 'ripple'
-  | 'heartbeat'
-  | 'ring'
-  | 'progressbar'
-  | 'skeleton'
-  | 'skeleton-text'
-  | 'skeleton-card'
-  | 'skeleton-avatar'
-  | 'overlay'
-  | 'use-loading';
+  | 'heartbeat';
+
+export type SkeletonId = string;
 
 export type LoaderControlFieldType = 'select' | 'color' | 'number' | 'text' | 'boolean';
 
@@ -46,7 +40,7 @@ export interface LoaderControlConfig {
 }
 
 export interface LoaderRegistryItem {
-  id: LoaderId;
+  id: string;
   name: string;
   category: LoaderCategory;
   description: string;

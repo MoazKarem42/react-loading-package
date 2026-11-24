@@ -5,10 +5,8 @@ import { HeroSection } from '@/features/hero/HeroSection';
 import { PlaygroundSection } from '@/features/playground/PlaygroundSection';
 import { ShowcaseSection } from '@/features/showcase/ShowcaseSection';
 import { DocsSection } from '@/features/docs/DocsSection';
-import type { LoaderId } from '@/registry/types';
-
 export function App() {
-  const [activeLoaderId, setActiveLoaderId] = React.useState<LoaderId>('spinner');
+  const [activeLoaderId, setActiveLoaderId] = React.useState<string>('spinner');
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--rl-demo-bg)' }}>

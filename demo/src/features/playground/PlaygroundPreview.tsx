@@ -64,7 +64,7 @@ export const PlaygroundPreview: React.FC<PlaygroundPreviewProps> = ({
     <div style={canvasStyle}>
       <div style={gridOverlayStyle} />
 
-      <div key={replayKey} style={{ zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div key={replayKey} style={{ zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: '520px' }}>
         <Component {...props} />
       </div>
 

@@ -4,18 +4,19 @@ import { CopyButton } from '@/components/ui/CopyButton';
 import { PlaygroundPreview } from './PlaygroundPreview';
 import { PlaygroundControls } from './PlaygroundControls';
 import { loaderRegistry, loaderList } from '@/registry/loaders';
+import { skeletonRegistry, skeletonList } from '@/registry/skeletons';
 import type { LoaderId, LoaderCategory } from '@/registry/types';
 
 export interface PlaygroundSectionProps {
-  activeId: LoaderId;
-  onSelectId: (id: LoaderId) => void;
+  activeId: string;
+  onSelectId: (id: string) => void;
 }
 
 export const PlaygroundSection: React.FC<PlaygroundSectionProps> = ({
   activeId,
   onSelectId,
 }) => {
-  const currentItem = loaderRegistry[activeId] || loaderRegistry.spinner;
+  const currentItem = loaderRegistry[activeId as LoaderId] || skeletonRegistry[activeId] || loaderRegistry.spinner;
   const [propsState, setPropsState] = React.useState<Record<string, unknown>>(currentItem.defaultProps);
   const [backgroundMode, setBackgroundMode] = React.useState<'dark' | 'light'>('dark');
   const [replayKey, setReplayKey] = React.useState<number>(0);
@@ -187,8 +188,17 @@ export const PlaygroundSection: React.FC<PlaygroundSectionProps> = ({
   const categories: { label: string; key: LoaderCategory }[] = [
     { label: 'LOADERS', key: 'loaders' },
     { label: 'SKELETONS', key: 'skeletons' },
-    { label: 'STATE & OVERLAY', key: 'state' },
   ];
+
+  const getCategoryItems = (catKey: LoaderCategory) => {
+    if (catKey === 'loaders') {
+      return loaderList;
+    }
+    if (catKey === 'skeletons') {
+      return skeletonList;
+    }
+    return [];
+  };
 
   return (
     <section id="playground" style={sectionStyle}>
@@ -276,33 +286,48 @@ export const PlaygroundSection: React.FC<PlaygroundSectionProps> = ({
           <div style={threeColumnGridStyle}>
             {/*Col 1: Navigator*/}
             <div style={navigatorColStyle}>
-              {categories.map((cat) => (
-                <div key={cat.key}>
-                  <div style={categoryLabelStyle}>{cat.label}</div>
-                  <div style={navListStyle}>
-                    {loaderList
-                      .filter((item) => item.category === cat.key)
-                      .map((item) => {
-                        const isActive = item.id === activeId;
-                        return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            style={getNavBtnStyle(isActive)}
-                            onClick={() => onSelectId(item.id)}
-                          >
-                            <span>{item.name}</span>
-                            {isActive && (
-                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <polyline points="9 18 15 12 9 6" />
-                              </svg>
-                            )}
-                          </button>
-                        );
-                      })}
+              {categories.map((cat) => {
+                const items = getCategoryItems(cat.key);
+                return (
+                  <div key={cat.key}>
+                    <div style={categoryLabelStyle}>{cat.label}</div>
+                    <div style={navListStyle}>
+                      {items.length === 0 ? (
+                        <div
+                          style={{
+                            padding: '6px 10px',
+                            fontSize: '12px',
+                            fontFamily: 'var(--rl-demo-font-sans)',
+                            color: 'var(--rl-demo-text-dim)',
+                            fontStyle: 'italic',
+                          }}
+                        >
+                          0 components
+                        </div>
+                      ) : (
+                        items.map((item) => {
+                          const isActive = item.id === activeId;
+                          return (
+                            <button
+                              key={item.id}
+                              type="button"
+                              style={getNavBtnStyle(isActive)}
+                              onClick={() => onSelectId(item.id)}
+                            >
+                              <span>{item.name}</span>
+                              {isActive && (
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                              )}
+                            </button>
+                          );
+                        })
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/*Col 2: Canvas Stage*/}

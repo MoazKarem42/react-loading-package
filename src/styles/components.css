@@ -1059,3 +1059,63 @@
 .rl-heartbeat-shape {
   fill: var(--rl-heartbeat-color, var(--rl-primary));
 }
+
+/* ==========================================================================
+   Skeleton Components
+   ========================================================================== */
+
+/* Base Skeleton primitive */
+.rl-skeleton {
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  background-color: var(--rl-skeleton-base, #e2e8f0);
+  line-height: 1;
+  user-select: none;
+}
+
+/* Skeleton shape variants */
+.rl-skeleton--text {
+  width: 100%;
+  height: 1em;
+  border-radius: var(--rl-skeleton-radius-sm, 4px);
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  transform-origin: 0 55%;
+  transform: scale(1, 0.6);
+}
+
+.rl-skeleton--circular {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rl-skeleton--rectangular {
+  border-radius: 0;
+}
+
+.rl-skeleton--rounded {
+  border-radius: var(--rl-skeleton-radius-md, 8px);
+}
+
+/* Skeleton animation modes */
+.rl-skeleton--shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--rl-skeleton-base, #e2e8f0) 0%,
+    var(--rl-skeleton-highlight, #f8fafc) 50%,
+    var(--rl-skeleton-base, #e2e8f0) 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: rl-shimmer var(--rl-speed, 1.5s) ease-in-out infinite;
+}
+
+.rl-skeleton--pulse {
+  animation: rl-skeleton-pulse var(--rl-speed, 1.5s) ease-in-out infinite;
+}
+
+.rl-skeleton--none {
+  animation: none;
+}
+

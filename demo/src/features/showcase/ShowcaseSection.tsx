@@ -2,15 +2,21 @@ import * as React from 'react';
 import { Container } from '@/components/layout/Container';
 import { Spinner } from 'react-loading-kit';
 import { loaderList } from '@/registry/loaders';
-import type { LoaderId } from '@/registry/types';
+import { skeletonList } from '@/registry/skeletons';
 
 export interface ShowcaseSectionProps {
-  onSelectLoader: (id: LoaderId) => void;
+  onSelectLoader: (id: string) => void;
 }
 
 export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader }) => {
   const [simulationMode, setSimulationMode] = React.useState<'overlay' | 'skeleton'>('overlay');
   const [isSimulating, setIsSimulating] = React.useState<boolean>(false);
+  const [showAllLoaders, setShowAllLoaders] = React.useState<boolean>(false);
+  const [showAllSkeletons, setShowAllSkeletons] = React.useState<boolean>(false);
+
+  const INITIAL_DISPLAY_COUNT = 6;
+  const displayedLoaders = showAllLoaders ? loaderList : loaderList.slice(0, INITIAL_DISPLAY_COUNT);
+  const displayedSkeletons = showAllSkeletons ? skeletonList : skeletonList.slice(0, INITIAL_DISPLAY_COUNT);
 
   const handleSimulate = () => {
     if (isSimulating) {
@@ -22,7 +28,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
     }, 2000);
   };
 
-  const handleInspect = (id: LoaderId) => {
+  const handleInspect = (id: string) => {
     onSelectLoader(id);
     const playgroundEl = document.getElementById('playground');
     if (playgroundEl) {
@@ -177,6 +183,22 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
     justifyContent: 'space-between',
     paddingTop: '12px',
     borderTop: '1px solid var(--rl-demo-border)',
+  };
+
+  const toggleBtnStyle: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '8px 20px',
+    backgroundColor: 'var(--rl-demo-surface-elevated)',
+    border: '1px solid var(--rl-demo-border)',
+    borderRadius: 'var(--rl-demo-radius-sm)',
+    color: 'var(--rl-demo-text)',
+    fontFamily: 'var(--rl-demo-font-mono)',
+    fontSize: '13px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    transition: 'all 0.15s ease',
   };
 
   return (
@@ -482,12 +504,12 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
         </Container>
       </section>
 
-      {/*Section - ALL COMPONENTS QUICK GRID (12 Bento Cards)*/}
+      {/*Section - LOADERS SHOWCASE*/}
       <section id="components" style={sectionStyle}>
         <Container size="xl">
           <div style={headerStyle}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <h2 style={titleStyle}>All Components</h2>
+              <h2 style={titleStyle}>Loaders</h2>
               <span
                 style={{
                   padding: '2px 8px',
@@ -499,14 +521,14 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
                   color: 'var(--rl-demo-accent)',
                 }}
               >
-                {loaderList.length} exports
+                {loaderList.length} components
               </span>
             </div>
-            <p style={descStyle}>Click any preset to inspect in the playground.</p>
+            <p style={descStyle}>Interactive, zero-dependency CSS and SVG loading indicators with customizable geometry and timing.</p>
           </div>
 
           <div style={bentoGridStyle}>
-            {loaderList.map((item) => {
+            {displayedLoaders.map((item) => {
               const Comp = item.component;
               return (
                 <div key={item.id} style={bentoCardStyle}>
@@ -543,6 +565,156 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
               );
             })}
           </div>
+
+          {loaderList.length > INITIAL_DISPLAY_COUNT && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '32px' }}>
+              <button
+                type="button"
+                onClick={() => setShowAllLoaders((prev) => !prev)}
+                style={toggleBtnStyle}
+              >
+                {showAllLoaders ? 'Show Less' : `Show More (${loaderList.length - INITIAL_DISPLAY_COUNT} more)`}
+              </button>
+            </div>
+          )}
+        </Container>
+      </section>
+
+      {/*Section - SKELETONS SHOWCASE*/}
+      <section id="skeletons" style={sectionStyle}>
+        <Container size="xl">
+          <div style={headerStyle}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <h2 style={titleStyle}>Skeletons</h2>
+              <span
+                style={{
+                  padding: '2px 8px',
+                  backgroundColor: 'var(--rl-demo-surface-active)',
+                  border: '1px solid var(--rl-demo-border)',
+                  borderRadius: '12px',
+                  fontFamily: 'var(--rl-demo-font-mono)',
+                  fontSize: '12px',
+                  color: 'var(--rl-demo-accent)',
+                }}
+              >
+                {skeletonList.length} components
+              </span>
+            </div>
+            <p style={descStyle}>Composable skeleton placeholders with shimmer effects and adaptive content layouts.</p>
+          </div>
+
+          {skeletonList.length === 0 ? (
+            <div
+              style={{
+                backgroundColor: 'var(--rl-demo-surface)',
+                border: '1px dashed var(--rl-demo-border)',
+                borderRadius: 'var(--rl-demo-radius-lg)',
+                padding: '48px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                gap: '12px',
+              }}
+            >
+              <div
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--rl-demo-surface-elevated)',
+                  border: '1px solid var(--rl-demo-border)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--rl-demo-accent)',
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <line x1="3" y1="9" x2="21" y2="9" />
+                  <line x1="9" y1="21" x2="9" y2="9" />
+                </svg>
+              </div>
+              <h3
+                style={{
+                  fontFamily: 'var(--rl-demo-font-sans)',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  color: 'var(--rl-demo-text)',
+                  margin: 0,
+                }}
+              >
+                Skeletons suite loading...
+              </h3>
+              <p
+                style={{
+                  fontFamily: 'var(--rl-demo-font-sans)',
+                  fontSize: '13px',
+                  color: 'var(--rl-demo-text-muted)',
+                  maxWidth: '420px',
+                  margin: 0,
+                  lineHeight: '20px',
+                }}
+              >
+                Zero-dependency adaptive skeleton placeholders (Text, Card, Avatar, and Rectangle) are coming next in Phase 3.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div style={bentoGridStyle}>
+                {displayedSkeletons.map((item) => {
+                  const Comp = item.component;
+                  return (
+                    <div key={item.id} style={bentoCardStyle}>
+                      <div style={{ ...bentoStageStyle, width: '100%', boxSizing: 'border-box', padding: '16px' }}>
+                        <Comp {...item.defaultProps} />
+                      </div>
+
+                      <div style={bentoBottomStyle}>
+                        <span
+                          style={{
+                            fontFamily: 'var(--rl-demo-font-mono)',
+                            fontSize: '12px',
+                            fontWeight: 500,
+                            color: 'var(--rl-demo-text)',
+                          }}
+                        >
+                          &lt;{item.name} /&gt;
+                        </span>
+
+                        <button
+                          type="button"
+                          onClick={() => handleInspect(item.id)}
+                          style={{
+                            fontFamily: 'var(--rl-demo-font-sans)',
+                            fontSize: '13px',
+                            color: 'var(--rl-demo-text-muted)',
+                            transition: 'color 0.15s ease',
+                          }}
+                        >
+                          Inspect →
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {skeletonList.length > INITIAL_DISPLAY_COUNT && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '32px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setShowAllSkeletons((prev) => !prev)}
+                    style={toggleBtnStyle}
+                  >
+                    {showAllSkeletons ? 'Show Less' : `Show More (${skeletonList.length - INITIAL_DISPLAY_COUNT} more)`}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </Container>
       </section>
     </>
