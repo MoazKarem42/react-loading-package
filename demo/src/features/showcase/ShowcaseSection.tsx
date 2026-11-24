@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container } from '@/components/layout/Container';
-import { Spinner } from 'react-loading-kit';
+import { Spinner, SkeletonAvatar, SkeletonText, SkeletonButton } from 'react-loading-kit';
 import { loaderList } from '@/registry/loaders';
 import { skeletonList } from '@/registry/skeletons';
 
@@ -203,15 +203,15 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
 
   return (
     <>
-      {/*Section - REAL-WORLD useLoading DEMO SECTION*/}
+      {/*Section - REAL-WORLD STATE MANAGEMENT SIMULATION*/}
       <section id="simulation" style={sectionStyle}>
         <Container size="xl">
           <div style={headerStyle}>
-            <span style={tagStyle}>Scoped State Machine</span>
-            <h2 style={titleStyle}>Scoped State Management with useLoading</h2>
+            <span style={tagStyle}>Interactive Patterns</span>
+            <h2 style={titleStyle}>Realistic Loading State Transitions</h2>
             <p style={descStyle}>
-              Eliminate boolean hell with named async loading scopes and automatic error handling. Keep user feedback
-              localized without triggering global tree re-renders.
+              Simulate seamless transitions between idle, spinner overlay, and skeleton placeholder states during
+              asynchronous workflows with zero layout shift.
             </p>
           </div>
 
@@ -267,23 +267,15 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
                   /*Skeleton mode active*/
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <div
-                        style={{
-                          width: '56px',
-                          height: '56px',
-                          borderRadius: '12px',
-                          backgroundColor: '#212121',
-                        }}
-                      />
+                      <SkeletonAvatar size="lg" shape="rounded" animation="shimmer" />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
-                        <div style={{ width: '40%', height: '14px', backgroundColor: '#212121', borderRadius: '2px' }} />
-                        <div style={{ width: '60%', height: '12px', backgroundColor: '#212121', borderRadius: '2px' }} />
+                        <SkeletonText lines={2} gap={8} lineHeight={14} animation="shimmer" />
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '12px', paddingTop: '8px', borderTop: '1px solid var(--rl-demo-border)' }}>
-                      <div style={{ flex: 1, height: '36px', backgroundColor: '#212121', borderRadius: '4px' }} />
-                      <div style={{ flex: 1, height: '36px', backgroundColor: '#212121', borderRadius: '4px' }} />
-                      <div style={{ flex: 1, height: '36px', backgroundColor: '#212121', borderRadius: '4px' }} />
+                      <SkeletonButton fullWidth size="md" animation="shimmer" />
+                      <SkeletonButton fullWidth size="md" animation="shimmer" />
+                      <SkeletonButton fullWidth size="md" animation="shimmer" />
                     </div>
                   </div>
                 ) : (
@@ -430,7 +422,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
                     color: 'var(--rl-demo-accent)',
                   }}
                 >
-                  useLoading.tsx
+                  UserProfile.tsx
                 </span>
               </div>
 
@@ -447,36 +439,40 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
               >
                 <code>
                   <span style={{ color: 'var(--rl-demo-accent)' }}>import </span>
-                  <span style={{ color: 'var(--rl-demo-text-secondary)' }}>&#123; useLoading, LoadingOverlay &#125; </span>
+                  <span style={{ color: 'var(--rl-demo-text-secondary)' }}>&#123; useState &#125; </span>
+                  <span style={{ color: 'var(--rl-demo-accent)' }}>from </span>
+                  <span style={{ color: 'var(--rl-demo-text-dim)' }}>'react'</span>
+                  {';\n'}
+                  <span style={{ color: 'var(--rl-demo-accent)' }}>import </span>
+                  <span style={{ color: 'var(--rl-demo-text-secondary)' }}>&#123; Spinner, SkeletonAvatar, SkeletonText &#125; </span>
                   <span style={{ color: 'var(--rl-demo-accent)' }}>from </span>
                   <span style={{ color: 'var(--rl-demo-text-dim)' }}>'react-loading-kit'</span>
+                  {';\n'}
+                  <span style={{ color: 'var(--rl-demo-accent)' }}>import </span>
+                  <span style={{ color: 'var(--rl-demo-text-dim)' }}>'react-loading-kit/styles.css'</span>
                   {';\n\n'}
                   <span style={{ color: 'var(--rl-demo-accent)' }}>export function </span>
                   <span style={{ color: '#FFFFFF' }}>UserProfile</span>
                   {'() {\n'}
-                  <span style={{ color: 'var(--rl-demo-text-muted)' }}>  // Scoped hook with auto-cleanup & race condition shield{'\n'}</span>
                   <span style={{ color: 'var(--rl-demo-accent)' }}>  const </span>
-                  {' { isLoading, withLoading } = '}
-                  <span style={{ color: '#FFFFFF' }}>useLoading</span>
-                  (<span style={{ color: 'var(--rl-demo-text-dim)' }}>'profile'</span>
-                  {');\n\n'}
-                  <span style={{ color: 'var(--rl-demo-accent)' }}>  const </span>
-                  {'handleRefresh = '}
-                  <span style={{ color: 'var(--rl-demo-accent)' }}>async </span>
-                  {'() => {\n'}
-                  <span style={{ color: 'var(--rl-demo-accent)' }}>    await </span>
-                  {'withLoading('}
-                  <span style={{ color: 'var(--rl-demo-accent)' }}>async </span>
-                  {'() => {\n'}
-                  <span style={{ color: 'var(--rl-demo-accent)' }}>      await </span>
-                  {'fetchUserData();\n'}
-                  {'    });\n'}
-                  {'  };\n\n'}
+                  {'[isLoading, setIsLoading] = '}
+                  <span style={{ color: '#FFFFFF' }}>useState</span>
+                  (<span>false</span>){';\n\n'}
+                  <span style={{ color: 'var(--rl-demo-text-muted)' }}>  // Render skeleton during initial load or refresh{'\n'}</span>
+                  <span style={{ color: 'var(--rl-demo-accent)' }}>  if </span>
+                  {'(isLoading) {\n'}
+                  {'    return (\n'}
+                  {'      <div className="profile-skeleton">\n'}
+                  {'        <SkeletonAvatar size="lg" shape="rounded" />\n'}
+                  {'        <SkeletonText lines={2} gap={8} />\n'}
+                  {'      </div>\n'}
+                  {'    );\n'}
+                  {'  }\n\n'}
                   <span style={{ color: 'var(--rl-demo-accent)' }}>  return </span>
                   {'(\n'}
-                  {'    <LoadingOverlay active={isLoading} text="Syncing profile...">\n'}
-                  {'      <ProfileCard onRefresh={handleRefresh} />\n'}
-                  {'    </LoadingOverlay>\n'}
+                  {'    <div className="profile-container">\n'}
+                  {'      <ProfileCard onRefresh={() => setIsLoading(true)} />\n'}
+                  {'    </div>\n'}
                   {'  );\n'}
                   {'}'}
                 </code>
@@ -495,9 +491,8 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({ onSelectLoader
                 }}
               >
                 <strong style={{ color: 'var(--rl-demo-text)' }}>Why it matters:</strong>{' '}
-                <code style={{ fontFamily: 'var(--rl-demo-font-mono)', color: 'var(--rl-demo-accent)' }}>withLoading</code>{' '}
-                wraps asynchronous promises directly. Even if the promise rejects, the loading state safely resets
-                without needing manual <code style={{ fontFamily: 'var(--rl-demo-font-mono)' }}>finally &#123;&#125;</code> blocks.
+                <code style={{ fontFamily: 'var(--rl-demo-font-mono)', color: 'var(--rl-demo-accent)' }}>react-loading-kit</code>{' '}
+                components are zero-dependency, lightweight, and pure React. They drop seamlessly into standard React state, TanStack Query, SWR, or React 18/19 Suspense boundaries.
               </div>
             </div>
           </div>

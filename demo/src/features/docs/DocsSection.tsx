@@ -24,21 +24,21 @@ interface ApiPropRow {
 const apiPropsData: ApiPropRow[] = [
   {
     prop: 'size',
-    type: 'string | number',
-    defaultVal: "'md' (32px)",
-    description: "Preset ('sm' | 'md' | 'lg') or numeric pixel value for loader bounding box.",
+    type: 'LoaderSize (string | number)',
+    defaultVal: "'md' (24px)",
+    description: "Preset ('sm' = 16px, 'md' = 24px, 'lg' = 36px, 'xl' = 48px) or numeric pixel dimension.",
   },
   {
     prop: 'color',
     type: 'string',
-    defaultVal: "'currentColor'",
-    description: "Any valid CSS color string or custom property (e.g. 'var(--my-accent)').",
+    defaultVal: 'var(--rl-primary)',
+    description: "Any valid CSS color string or custom property (hex, rgb, hsl, or CSS variable).",
   },
   {
     prop: 'speed',
-    type: "'slow' | 'normal' | 'fast' | number",
-    defaultVal: "'normal' (0.8s)",
-    description: 'Animation cycle duration speed preset or specific second interval value.',
+    type: 'number',
+    defaultVal: 'Component default',
+    description: 'Animation cycle duration in seconds (e.g. 0.8s).',
   },
   {
     prop: 'thickness',
@@ -47,16 +47,16 @@ const apiPropsData: ApiPropRow[] = [
     description: 'Stroke thickness in pixels for border/ring SVG loaders.',
   },
   {
-    prop: 'ariaLabel',
+    prop: 'label',
     type: 'string',
     defaultVal: "'Loading...'",
-    description: 'Screen reader text announcement for accessibility attributes.',
+    description: 'Screen reader announcement text rendered in an internal .rl-sr-only element.',
   },
   {
-    prop: 'shimmer',
-    type: 'boolean',
-    defaultVal: 'true',
-    description: 'Enables CSS linear shimmer gradient sweep on skeleton components.',
+    prop: 'animation',
+    type: "'shimmer' | 'pulse' | 'none'",
+    defaultVal: "'shimmer'",
+    description: 'Animation effect applied to skeleton placeholder components.',
   },
 ];
 

@@ -1,30 +1,30 @@
 # react-loading-kit
 
+Zero-dependency, accessible loading states, spinners, and skeleton loaders for React. Engineered with 60 FPS GPU-accelerated CSS animations, full TypeScript typing, comprehensive screen reader accessibility, and automatic `prefers-reduced-motion` compliance.
+
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg?style=flat-square)](https://www.npmjs.com/package/react-loading-kit)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![Tree Shakeable](https://img.shields.io/badge/tree--shakeable-ESM%20%2B%20CJS-success.svg?style=flat-square)](https://bundlephobia.com/package/react-loading-kit)
 [![React 18+](https://img.shields.io/badge/react-%3E%3D18.0.0-61dafb.svg?style=flat-square)](https://react.dev)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
-Zero-dependency, accessible loading states, spinners, and animated indicators for modern React applications. Built with 60 FPS GPU-accelerated CSS animations, full TypeScript typing, comprehensive screen reader accessibility, and automatic `prefers-reduced-motion` compliance.
-
 ---
 
 ## Features
 
-- 🪶 **Zero Dependencies:** Zero runtime footprint outside React peer dependencies.
-- ♿ **Accessible by Default:** Includes `role="status"`, `aria-live="polite"`, `.rl-sr-only` announcements, and `aria-hidden` decorative graphics.
-- 🎬 **Reduced Motion Friendly:** Respects user accessibility preferences via `@media (prefers-reduced-motion: reduce)`.
-- ⚡ **GPU-Accelerated Performance:** Powered exclusively by CSS `transform` and `opacity` properties for smooth 60 FPS animations.
-- 🎨 **Deeply Themeable:** Global CSS custom properties (variables) with component-level prop overrides.
-- 🌲 **Tree-Shakeable:** Modular ESM & CJS distribution with TypeScript definitions included.
-- ⚛️ **Next.js & SSR Ready:** Preconfigured with `"use client"` directives for seamless integration into Next.js App Router and Pages Router.
+- **Zero Dependencies**: Pure React with zero runtime dependencies beyond React peer dependencies.
+- **Accessible by Default**: Implements `role="status"`, `aria-live="polite"`, screen reader announcements (`.rl-sr-only`), and `aria-hidden` decorative graphics.
+- **Reduced Motion Friendly**: Automatically respects user preferences via `@media (prefers-reduced-motion: reduce)`.
+- **Hardware-Accelerated**: Animations use CSS `transform` and `opacity` properties for smooth 60 FPS performance.
+- **Themeable Design Tokens**: Customizable via CSS custom properties with prop-level overrides.
+- **Tree-Shakeable**: Dual ESM and CJS builds with TypeScript declarations.
+- **SSR & Next.js Compatible**: Marked with `"use client"` directives for seamless Next.js App Router and Pages Router support.
 
 ---
 
 ## Installation
 
-Install `react-loading-kit` using your preferred package manager:
+Install via your preferred package manager:
 
 ```bash
 # npm
@@ -35,17 +35,13 @@ pnpm add react-loading-kit
 
 # yarn
 yarn add react-loading-kit
-
-# bun
-bun add react-loading-kit
 ```
 
 ### Import Stylesheet
 
-`react-loading-kit` uses optimized CSS classes for styling and animations. Import the stylesheet once at the root of your application:
+Import the library stylesheet once at the root of your application (e.g. `layout.tsx`, `_app.tsx`, or `main.tsx`):
 
 ```tsx
-// Next.js (app/layout.tsx or pages/_app.tsx) / Vite / Create React App (src/main.tsx or src/index.tsx)
 import "react-loading-kit/styles.css";
 ```
 
@@ -55,20 +51,20 @@ import "react-loading-kit/styles.css";
 
 ```tsx
 import React from "react";
-import { Spinner, DotsBounce, Bars } from "react-loading-kit";
+import { Spinner, DotsBounce, SkeletonCard } from "react-loading-kit";
 import "react-loading-kit/styles.css";
 
 export default function App() {
   return (
-    <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-      {/* Default medium spinner */}
+    <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      {/* Default spinner */}
       <Spinner />
 
-      {/* Customized size, color, and accessibility label */}
-      <DotsBounce size="lg" color="#3b82f6" label="Loading chat history..." />
+      {/* Customized loader */}
+      <DotsBounce size="lg" color="#3b82f6" speed={0.8} label="Fetching messages..." />
 
-      {/* Explicit pixel dimensions */}
-      <Bars size={32} color="#10b981" speed={0.8} />
+      {/* Skeleton card placeholder */}
+      <SkeletonCard lines={3} animation="shimmer" />
     </div>
   );
 }
@@ -78,177 +74,141 @@ export default function App() {
 
 ## Unified Props API
 
-All loader components share a consistent, predictable base API via `BaseLoaderProps`. They also extend `React.HTMLAttributes<HTMLSpanElement>`, forwarding native HTML attributes (`id`, `onClick`, `data-*`, etc.) and supporting React refs via `React.forwardRef`.
+### BaseLoaderProps
+
+All loader components extend `React.HTMLAttributes<HTMLSpanElement>`, forward native DOM attributes, support refs via `React.forwardRef`, and accept standard base props:
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `size` | `"sm" \| "md" \| "lg" \| "xl" \| number` | `"md"` | Loader dimensions. Accepts standard preset tokens or an explicit pixel number (e.g. `size={32}`). |
-| `color` | `string` | `var(--rl-primary)` (`#3b82f6`) | Main accent color for animated elements. Accepts any valid CSS color (hex, rgb, hsl, or CSS variable). |
-| `speed` | `number` | Component default | Total animation cycle duration in seconds (e.g. `speed={0.5}` for 2x faster). |
-| `label` | `string` | `"Loading..."` | Accessible announcement text rendered in an `.rl-sr-only` span for screen readers. |
-| `className` | `string` | `undefined` | Additional CSS class names merged with built-in library classes. |
-| `style` | `React.CSSProperties` | `undefined` | Inline styles merged with component styles without overriding size or color logic. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl" \| number` | `"md"` | Size preset (`sm` = 16px, `md` = 24px, `lg` = 36px, `xl` = 48px) or explicit numeric pixel size. |
+| `color` | `string` | `var(--rl-primary)` | Accent color for animated elements. Accepts any valid CSS color. |
+| `speed` | `number` | Component default | Animation cycle duration in seconds (e.g. `0.6`). |
+| `label` | `string` | `"Loading..."` | Screen reader announcement text rendered in an `.rl-sr-only` element. |
+| `className` | `string` | `undefined` | Additional CSS class names merged with component classes. |
+| `style` | `React.CSSProperties` | `undefined` | Inline styles merged with component styles. |
 
-### Component-Specific Props
+### Component-Specific Loader Props
 
-Certain loaders provide additional specialized props for fine-grained visual control:
+Certain loaders accept specialized properties:
 
 | Component | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| `Spinner` | `thickness` | `number` | `3` | Stroke thickness in pixels for the circular path. |
-| `Spinner` | `trackColor` | `string` | `var(--rl-spinner-track)` | Background track circle color. |
-| `DualRing` | `thickness` | `number` | `2.5` | Stroke thickness in pixels for both concentric rings. |
-| `DualRing` | `secondaryColor` | `string` | `color` or `--rl-primary` | Color for the inner counter-rotating ring. |
-| `DualRing` | `trackColor` | `string` | `"transparent"` | Track color behind the rings. |
-| `DashedSpinner` | `thickness` | `number` | `3` | Stroke thickness in pixels for the dashed perimeter. |
-| `Orbit` | `trackColor` | `string` | `var(--rl-orbit-track)` | Color of the stationary orbit track circle. |
-| `Dots` | `spacing` | `number \| string` | Auto | Gap spacing between dots (e.g. `spacing={8}` or `spacing="0.5rem"`). |
-| `Bars` | `spacing` | `number \| string` | Auto | Gap spacing between bars (e.g. `spacing={6}` or `spacing="6px"`). |
+| `Spinner` | `thickness` | `number` | `3` | Stroke thickness in pixels. |
+| `Spinner` | `trackColor` | `string` | `var(--rl-spinner-track)` | Background circular track color. |
+| `DualRing` | `thickness` | `number` | `2.5` | Stroke thickness in pixels. |
+| `DualRing` | `secondaryColor` | `string` | `color` / `--rl-primary` | Inner counter-rotating ring color. |
+| `DualRing` | `trackColor` | `string` | `"transparent"` | Track ring color. |
+| `DashedSpinner` | `thickness` | `number` | `3` | Stroke thickness in pixels. |
+| `Orbit` | `trackColor` | `string` | `var(--rl-orbit-track)` | Stationary orbit track color. |
+| `Dots` | `spacing` | `number \| string` | Auto | Gap between dots (e.g. `8` or `"8px"`). |
+| `Bars` | `spacing` | `number \| string` | Auto | Gap between equalizer bars. |
+
+### BaseSkeletonProps
+
+Skeleton components extend `React.HTMLAttributes<HTMLSpanElement>` and share the following foundation:
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `width` | `string \| number` | `undefined` | Explicit width (CSS string or pixel number). |
+| `height` | `string \| number` | `undefined` | Explicit height (CSS string or pixel number). |
+| `borderRadius` | `string \| number` | `undefined` | Custom border radius (CSS string or pixel number). |
+| `variant` | `"text" \| "circular" \| "rectangular" \| "rounded"` | `"text"` | Visual geometry variant. |
+| `animation` | `"shimmer" \| "pulse" \| "none"` | `"shimmer"` | Animation style effect. |
 
 ---
 
-## Available Loader Categories
+## Component Catalog
 
-### 1. Spinners & Rings
-High-precision circular loaders ideal for inline buttons, form submissions, and full-screen overlays:
-- **`Spinner`**: Classic circular stroke loader with customizable track color and stroke thickness.
-- **`DualRing`**: Concentric dual rings rotating in opposing directions with dual-color support.
-- **`ChasingRing`**: Smooth dash-offset arc that stretches and compresses as it spins.
-- **`DashedSpinner`**: Segmented circular ring with distinct dashed segments.
-- **`Orbit`**: Planetary satellite dot traversing an orbital trajectory around a central track.
-- **`Clock`**: Minimalist clock dial with synchronized, rotating hour and minute hands.
+### Loaders (19 Components)
 
-### 2. Dots & Typing
-Rhythmic, sequential dot indicators suited for conversational UIs, AI streaming responses, and cards:
-- **`Dots`**: Three-dot wave pulse.
-- **`DotsBounce`**: Bouncing three-dot sequence with fluid vertical translation.
-- **`DotsFade`**: Subtle staggered opacity pulsing.
-- **`DotsScale`**: Staggered scaling dots expanding and contracting.
-- **`DotsTyping`**: Standard messaging typing indicator, ideal for chat interfaces.
-- **`DotsCircle`**: Circular arrangement of 8 fading dots creating a radar/clockwork rotation.
+1. **Circular & Spinners**:
+   - `Spinner`: Classic circular loader with stroke thickness and track color options.
+   - `DualRing`: Concentric dual rings rotating in opposing directions with dual-color support.
+   - `ChasingRing`: Smooth dash-offset arc that stretches and rotates.
+   - `DashedSpinner`: Segmented circular ring with distinct dashes.
+   - `Orbit`: Satellite dot rotating around a central circular track.
+   - `Clock`: Minimalist dial with synchronized rotating hour and minute hands.
 
-### 3. Bars & Waves
-Frequency-style bar animations suited for media streaming, audio playback, and content loading:
-- **`Bars`**: Multi-bar equalizer animation with customizable bar width, height, and spacing.
+2. **Dots & Typing**:
+   - `Dots`: Three-dot horizontal wave.
+   - `DotsBounce`: Bouncing three-dot sequence with vertical translation.
+   - `DotsFade`: Staggered opacity pulsing dots.
+   - `DotsScale`: Staggered scaling dots expanding and contracting.
+   - `DotsTyping`: Standard typing indicator for chat and messaging interfaces.
+   - `DotsCircle`: Circular arrangement of 8 fading dots.
 
-### 4. Pulse & Radar
-Radial loaders and radar pulses for spatial or background status updates:
-- **`DotsCircle`**: Circular pulse ring.
-- **`Orbit`**: Orbital focal point spinner.
-- *Additional radar sweeps and skeleton loaders are in active development.*
+3. **Bars & Equalizers**:
+   - `Bars`: Multi-bar equalizer with custom spacing and dimensions.
+   - `BarsWave`: Smooth vertical wave oscillation across bars.
+   - `BarsScale`: Staggered height scaling bars.
+   - `BarsFade`: Equalizer bars pulsating opacity.
+
+4. **Pulse & Ripple**:
+   - `Pulse`: Expanding concentric radial pulse effect.
+   - `Ripple`: Water-drop ripple shockwave animation.
+   - `Heartbeat`: Rhythmic double-beat pulse animation.
+
+### Skeletons (10 Components)
+
+- `Skeleton`: Foundational placeholder with variant, width, height, and animation modes.
+- `SkeletonText`: Multi-line text block with organic trailing line widths.
+- `SkeletonAvatar`: Profile avatar placeholder (circular, rounded, or square) with optional text.
+- `SkeletonButton`: Action button placeholder supporting size and corner radius presets.
+- `SkeletonCard`: Media card placeholder with banner image, text block, and footer.
+- `SkeletonList`: Repeating list item placeholders with optional avatars and dividers.
+- `SkeletonProfile`: Account profile placeholder with banner, avatar, header, and stats.
+- `SkeletonTable`: Tabular data placeholder with configurable rows, columns, and header.
+- `SkeletonImage`: Media image placeholder with centered icon graphic.
+- `SkeletonForm`: Form layout placeholder with label, inputs, and submit button.
 
 ---
 
 ## CSS Variables & Theming
 
-`react-loading-kit` uses a design token system built on CSS custom properties. You can customize loaders globally across your entire app or scope overrides to specific themes, containers, or components.
-
-### Global Configuration
-
-Define overrides in your global stylesheet:
+Override design tokens globally or scope them within components or theme containers:
 
 ```css
 :root {
   /* Brand colors */
-  --rl-primary: #6366f1; /* Primary indigo loader color */
-  --rl-spinner-track: rgba(99, 102, 241, 0.15); /* Light track background */
+  --rl-primary: #3b82f6;
+  --rl-spinner-track: rgba(0, 0, 0, 0.1);
+  --rl-spinner-head: var(--rl-primary);
 
-  /* Global animation speed */
-  --rl-speed: 0.6s;
+  /* Animation timing */
+  --rl-speed: 0.75s;
 
-  /* Global size presets */
-  --rl-size-sm: 18px;
-  --rl-size-md: 28px;
-  --rl-size-lg: 40px;
-  --rl-size-xl: 56px;
+  /* Sizing presets */
+  --rl-size-sm: 16px;
+  --rl-size-md: 24px;
+  --rl-size-lg: 36px;
+  --rl-size-xl: 48px;
+
+  /* Skeleton tokens */
+  --rl-skeleton-base: #e2e8f0;
+  --rl-skeleton-highlight: #f8fafc;
+  --rl-skeleton-radius-sm: 4px;
+  --rl-skeleton-radius-md: 8px;
 }
 
 /* Dark mode theme */
 [data-theme="dark"] {
-  --rl-primary: #818cf8;
+  --rl-primary: #60a5fa;
   --rl-spinner-track: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Reference: Available CSS Variables
-
-| Variable | Default Value | Description |
-| :--- | :--- | :--- |
-| `--rl-primary` | `#3b82f6` | Base accent color for all loaders |
-| `--rl-spinner-track` | `rgba(0, 0, 0, 0.1)` | Inactive circular track background color |
-| `--rl-spinner-head` | `var(--rl-primary)` | Active spinning head color |
-| `--rl-speed` | `0.75s` | Base animation cycle duration |
-| `--rl-size-sm` | `16px` | Small dimension preset |
-| `--rl-size-md` | `24px` | Medium dimension preset |
-| `--rl-size-lg` | `36px` | Large dimension preset |
-| `--rl-size-xl` | `48px` | Extra-large dimension preset |
-| `--rl-dots-color` | `var(--rl-primary)` | Color for dot loader variants |
-| `--rl-dots-gap-md` | `6px` | Default gap between dots |
-| `--rl-bars-color` | `var(--rl-primary)` | Color for equalizer bars |
-
----
-
-## Accessibility (`a11y`) & Reduced Motion
-
-Accessibility is a core design requirement of `react-loading-kit`:
-
-### 1. Screen Reader Live Announcements
-Every loader renders with:
-- `role="status"`
-- `aria-live="polite"`
-- An internal `.rl-sr-only` text node containing your customizable `label` prop (default: `"Loading..."`).
-- Decorative SVGs and visual markers are explicitly marked with `aria-hidden="true"`, ensuring screen readers do not narrate irrelevant SVG geometry.
-
-### 2. Automatic `prefers-reduced-motion` Support
-For users sensitive to motion sickness or vestibular disorders, `react-loading-kit` respects their operating system preference automatically. When `prefers-reduced-motion: reduce` is detected:
-- Animation durations are set to `0.01ms !important`.
-- Iteration counts are capped to `1`.
-- Infinite spinning and bouncing movements are neutralized, presenting a static, non-distracting loading indicator state while preserving live screen reader announcements.
-
-```css
-/* Built into react-loading-kit/styles.css */
-@media (prefers-reduced-motion: reduce) {
-  .rl-animated,
-  .rl-spinner,
-  [class*="rl-"] {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  --rl-skeleton-base: #1e293b;
+  --rl-skeleton-highlight: #334155;
 }
 ```
 
 ---
 
-## Integration with UI Frameworks
+## Accessibility & Reduced Motion
 
-### Next.js (App Router)
-
-`react-loading-kit` exports `"use client"` compatible components and works cleanly in Server and Client Components:
-
-```tsx
-// app/dashboard/loading.tsx
-import { Spinner } from "react-loading-kit";
-
-export default function Loading() {
-  return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <Spinner size="lg" color="#2563eb" label="Loading dashboard..." />
-    </div>
-  );
-}
-```
-
-### Tailwind CSS
-
-Combine Tailwind utility classes directly with loaders via `className`:
-
-```tsx
-<Spinner className="mr-2 text-indigo-500 hover:opacity-80" size="sm" />
-```
+- **Live Screen Reader Announcements**: Every loader includes `role="status"` and `aria-live="polite"`. The internal label text is wrapped in `.rl-sr-only` to ensure screen reader narration without visual clutter.
+- **Decorative Graphics**: SVG elements are marked with `aria-hidden="true"` so screen readers ignore decorative geometry.
+- **Automatic Reduced Motion**: Complies with `@media (prefers-reduced-motion: reduce)` by neutralizing rapid rotations and animations into non-distracting indicators while preserving full accessibility announcements.
 
 ---
 
 ## License
 
-MIT © [react-loading-kit Contributors](./LICENSE)
+MIT © 2026 [Moaz Karem](./LICENSE)

@@ -6,8 +6,13 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -22,6 +27,16 @@
     "type-check": "tsc --noEmit",
     "dev": "tsup --watch",
     "lint": "eslint src demo/src"
+  },
+  "author": "Moaz Karem",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoazKarem42/react-loading-package.git"
+  },
+  "homepage": "https://github.com/MoazKarem42/react-loading-package#readme",
+  "bugs": {
+    "url": "https://github.com/MoazKarem42/react-loading-package/issues"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -53,7 +68,8 @@
     "loaders",
     "indicators",
     "accessibility",
-    "zero-dependency"
-  ],
-  "license": "MIT"
+    "zero-dependency",
+    "spinners",
+    "skeletons"
+  ]
 }

@@ -115,7 +115,7 @@ export const Navbar: React.FC = () => {
             />
 
             <a
-              href="https://github.com"
+              href="https://github.com/MoazKarem42/react-loading-package"
               target="_blank"
               rel="noopener noreferrer"
               style={iconLinkStyle}

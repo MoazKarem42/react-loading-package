@@ -234,7 +234,7 @@ export const HeroSection: React.FC = () => {
           <h1 style={headingStyle}>Zero-dependency loading states for React.</h1>
 
           <p style={subtitleStyle}>
-            Accessible spinners, composable skeletons, and scoped loading hooks engineered for precision.
+            Accessible spinners, composable skeletons, and modern animated indicators engineered for precision.
           </p>
 
           <div style={actionGroupStyle}>
@@ -401,7 +401,7 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div style={stepPreStyle}>
                   <span style={{ color: 'var(--rl-demo-accent)' }}>import </span>
-                  <span style={{ color: 'var(--rl-demo-text-secondary)' }}>&#123; Spinner, SkeletonCard, useLoading &#125; </span>
+                  <span style={{ color: 'var(--rl-demo-text-secondary)' }}>&#123; Spinner, SkeletonCard, Dots &#125; </span>
                   <span style={{ color: 'var(--rl-demo-accent)' }}>from </span>
                   <span style={{ color: 'var(--rl-demo-text-dim)' }}>'react-loading-kit'</span>
                   <span style={{ color: 'var(--rl-demo-text-secondary)' }}>;</span>

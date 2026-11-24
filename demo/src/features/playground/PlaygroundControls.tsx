@@ -127,10 +127,12 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
         const val = values[control.name] ?? control.defaultValue;
 
         if (control.name === 'size' && control.options) {
-          let displaySize = '32px';
+          let displaySize = '24px';
           if (val === 'sm') {
             displaySize = '16px';
           } else if (val === 'lg') {
+            displaySize = '36px';
+          } else if (val === 'xl') {
             displaySize = '48px';
           }
           return (

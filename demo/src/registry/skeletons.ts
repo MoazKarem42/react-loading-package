@@ -63,7 +63,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { Skeleton } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <Skeleton\n      variant="${p.variant || 'rounded'}"\n      animation="${p.animation || 'shimmer'}"\n      height={${p.height || 48}}\n      borderRadius={${p.borderRadius || 8}}\n    />\n  );\n}`,
+      `import { Skeleton } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <Skeleton\n      variant="${p.variant || 'rounded'}"\n      animation="${p.animation || 'shimmer'}"\n      height={${p.height || 48}}\n      borderRadius={${p.borderRadius || 8}}\n    />\n  );\n}`,
   },
 
   'skeleton-text': {
@@ -117,7 +117,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonText } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonText\n      lines={${p.lines || 3}}\n      gap={${p.gap || 8}}\n      lineHeight={${p.lineHeight || 16}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonText } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonText\n      lines={${p.lines || 3}}\n      gap={${p.gap || 8}}\n      lineHeight={${p.lineHeight || 16}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-avatar': {
@@ -162,7 +162,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonAvatar } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonAvatar\n      size="${p.size || 'md'}"\n      shape="${p.shape || 'circular'}"\n      withText={${Boolean(p.withText)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonAvatar } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonAvatar\n      size="${p.size || 'md'}"\n      shape="${p.shape || 'circular'}"\n      withText={${Boolean(p.withText)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-button': {
@@ -207,7 +207,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonButton } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonButton\n      size="${p.size || 'md'}"\n      rounded="${p.rounded || 'md'}"\n      fullWidth={${Boolean(p.fullWidth)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonButton } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonButton\n      size="${p.size || 'md'}"\n      rounded="${p.rounded || 'md'}"\n      fullWidth={${Boolean(p.fullWidth)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-card': {
@@ -257,7 +257,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonCard } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonCard\n      imageHeight={${p.imageHeight || 140}}\n      lines={${p.lines || 3}}\n      hasFooter={${Boolean(p.hasFooter)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonCard } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonCard\n      imageHeight={${p.imageHeight || 140}}\n      lines={${p.lines || 3}}\n      hasFooter={${Boolean(p.hasFooter)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-list': {
@@ -314,7 +314,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonList } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonList\n      items={${p.items || 4}}\n      gap={${p.gap || 12}}\n      hasAvatar={${Boolean(p.hasAvatar)}}\n      hasDividers={${Boolean(p.hasDividers)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonList } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonList\n      items={${p.items || 4}}\n      gap={${p.gap || 12}}\n      hasAvatar={${Boolean(p.hasAvatar)}}\n      hasDividers={${Boolean(p.hasDividers)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-profile': {
@@ -365,7 +365,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonProfile } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonProfile\n      bannerHeight={${p.bannerHeight || 100}}\n      avatarSize={${p.avatarSize || 64}}\n      hasStats={${Boolean(p.hasStats)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonProfile } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonProfile\n      bannerHeight={${p.bannerHeight || 100}}\n      avatarSize={${p.avatarSize || 64}}\n      hasStats={${Boolean(p.hasStats)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-table': {
@@ -414,7 +414,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonTable } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonTable\n      rows={${p.rows || 4}}\n      columns={${p.columns || 4}}\n      hasHeader={${Boolean(p.hasHeader)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonTable } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonTable\n      rows={${p.rows || 4}}\n      columns={${p.columns || 4}}\n      hasHeader={${Boolean(p.hasHeader)}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-image': {
@@ -459,7 +459,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonImage } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonImage\n      height={${p.height || 160}}\n      borderRadius={${p.borderRadius || 8}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonImage } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonImage\n      height={${p.height || 160}}\n      borderRadius={${p.borderRadius || 8}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 
   'skeleton-form': {
@@ -509,7 +509,7 @@ export const skeletonRegistry: Record<string, LoaderRegistryItem> = {
       },
     ],
     generateSnippet: (p) =>
-      `import { SkeletonForm } from 'react-loading-kit';\n\nexport default function Example() {\n  return (\n    <SkeletonForm\n      fields={${p.fields || 3}}\n      hasSubmitButton={${Boolean(p.hasSubmitButton)}}\n      gap={${p.gap || 14}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
+      `import { SkeletonForm } from 'react-loading-kit';\nimport 'react-loading-kit/styles.css';\n\nexport default function Example() {\n  return (\n    <SkeletonForm\n      fields={${p.fields || 3}}\n      hasSubmitButton={${Boolean(p.hasSubmitButton)}}\n      gap={${p.gap || 14}}\n      animation="${p.animation || 'shimmer'}"\n    />\n  );\n}`,
   },
 };
 
