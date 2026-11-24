@@ -8,6 +8,8 @@ Zero-dependency, accessible loading states, spinners, and skeleton loaders for R
 [![React 18+](https://img.shields.io/badge/react-%3E%3D18.0.0-61dafb.svg?style=flat-square)](https://react.dev)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
+**Live Demo / Interactive Playground**: [react-loading-package-demo.vercel.app](https://react-loading-package-demo.vercel.app/)
+
 ---
 
 ## Features

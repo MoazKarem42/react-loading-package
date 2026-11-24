@@ -34,7 +34,7 @@
     "type": "git",
     "url": "git+https://github.com/MoazKarem42/react-loading-package.git"
   },
-  "homepage": "https://github.com/MoazKarem42/react-loading-package#readme",
+  "homepage": "https://react-loading-package-demo.vercel.app/",
   "bugs": {
     "url": "https://github.com/MoazKarem42/react-loading-package/issues"
   },
